@@ -1,0 +1,185 @@
+.Container {
+    width: 1200px;
+    margin: 0 auto; /*设置整个容器在浏览器中水平居中*/
+    background: #FFFFFF;
+}
+
+.Header {
+    height: 80px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #b8b8b8;
+    margin:auto;
+    width: 100%;
+}
+
+.bookhead {
+    margin-top: 20px;
+    margin-left: 20px;
+    float: left;
+}
+
+.logo {
+    padding-left: 50px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    color: #FFFFFF;
+}
+
+.Content {
+    height: 600px;
+    width: 1460px;
+    /*此处对容器设置了高度，一般不建议对容器设置高度，一般使用overflow:auto;属性设置容器根据内容自适应高度，如果不指定高度或不设置自适应高度，容器将默认为1个字符高度，容器下方的布局元素（footer）设置margin-top:属性将无效*/
+    /*margin-top: 6px; !*此处讲解margin的用法，设置content与上面header元素之间的距离*!*/
+ /*
+    background-image: url("../image/bankground.jpg");
+    */
+    margin: auto;
+    padding-left: 119px;
+}
+.Headdetail {
+    height: 40px;
+    width: 100%;
+}
+.Content-Left {
+    height: 560px;
+    width: 160px;
+    margin: 10px; /*设置元素跟其他元素的距离为20像素*/
+    float: left; /*设置浮动，实现多列效果，div+Css布局中很重要的*/
+    background: rgba(255, 255, 255, 0.49);
+}
+
+.Content-Main {
+    height: 560px;
+    width: 1020px;
+    margin: 10px; /*设置元素跟其他元素的距离为20像素*/
+    float: left; /*设置浮动，实现多列效果，div+Css布局中很重要的*/
+    background: rgba(244, 241, 239, 0.91);
+}
+
+body {
+    margin-bottom: 10px;
+    margin-right: 30px;
+    margin-left: 30px;
+    color: #000;
+    font-size: 12px;
+    font-family: "Helvetica Neue", Helvetica, STheiti, 微软雅黑, 宋体, Arial, Tahoma, sans-serif, serif;
+    background-color: #f8f8f8;
+}
+.naviul {
+    width: 1200px;
+    heigh: 80px;
+    line-height: 60px;
+    padding: 10px 25px;
+}
+
+.navili {
+    padding: 0 22px;
+    float: left;
+    list-style-type: none;
+}
+
+.lititle {
+    font-weight: 500;
+    font-size: 22px;
+    color: #000000;
+    float: left;
+}
+.lititle:focus {
+    text-decoration: none;
+    color: #75c53b;
+}
+
+.lititle:hover {
+    text-decoration: none;
+    color: #75c53b;
+}
+
+.lilogin {
+    font-size: 16px;
+    margin-left: 520px;
+    color: #000000;
+
+}
+
+.lilogin:focus {
+    text-decoration: none;
+    color: #75c53b
+;
+}
+
+.lilogin:hover {
+    text-decoration: none;
+    color: #75c53b
+;
+}
+/*左侧菜单*/
+.sidebar-menu {
+    border-right: 1px solid #c4c8cb;
+    float: left;
+}
+
+/*一级菜单*/
+.menu-first {
+    display: block;
+    width: 160px;
+    height: 60px;
+    line-height: 60px;
+    background-color: rgba(234, 239, 255, 0.81);
+    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #e1e1e1;
+    padding: 0;
+    font-size: 16px;
+    font-weight: normal;
+    text-align: center;
+    color: #000;
+}
+
+
+/*一级菜单鼠标划过状态*/
+.menu-first:hover {
+    text-decoration: none;
+    background-color: #75c53b;
+    color: #FFFFFF;
+}
+
+.menu-first:focus {
+    text-decoration: none;
+    background-color: #75c53b;
+    color: #FFFFFF;
+}
+
+/*二级菜单*/
+.menu-second li a {
+    background-color: #f6f6f6;
+    height: 46px;
+    line-height: 46px;
+    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+    font-size: 12px;
+    text-align: center;
+    color: #4b4b4b;
+}
+
+/*二级菜单鼠标划过样式*/
+.menu-second li a:hover {
+    text-decoration: none;
+    background-color: #75c53b
+;
+    color: #FFFFFF;;
+}
+
+/*二级菜单选中状态*/
+.menu-second li a:focus {
+    background-color: #75c53b;
+    height: 46px;
+    line-height: 46px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+/*覆盖bootstrap的样式*/
+.nav-list, .nav-list li a {
+    padding: 0px;
+    margin: 0px;
+}
+		

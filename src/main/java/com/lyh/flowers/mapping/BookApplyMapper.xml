@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lyh.flowers.dao.IBookApplyDao">
+ <resultMap id="BaseResultMap" type="com.lyh.flowers.pojo.BookApply" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="bookName" property="bookName" jdbcType="VARCHAR" />
+    <result column="authorname" property="authorname" jdbcType="VARCHAR" />
+    <result column="issuedate" property="issuedate" jdbcType="VARCHAR" />
+    <result column="urllink" property="urllink" jdbcType="VARCHAR" />
+    <result column="recommendreason" property="recommendreason" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+    <result column="lastupdatetime" property="lastupdatetime" jdbcType="VARCHAR" />
+  </resultMap>
+  
+   <sql id="Base_Column_List" >
+    id, bookName, authorname, issuedate,
+    urllink,recommendreason,createtime,lastupdatetime
+  </sql>
+  <insert id="insert" parameterType="com.lyh.flowers.pojo.BookApply" >
+    insert into t_library_apply (<include refid="Base_Column_List" />)
+    values (#{id,jdbcType=VARCHAR}, #{bookName,jdbcType=VARCHAR},#{authorname,jdbcType=VARCHAR}, #{issuedate,jdbcType=VARCHAR}, #{urllink,jdbcType=VARCHAR},
+    #{recommendreason,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{lastupdatetime,jdbcType=VARCHAR})
+  </insert>
+  
+  <select id="getList" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List" /> from t_library_apply 
+    order by t_library_apply.id desc
+    limit #{0},#{1}
+  </select>
+  
+    <select id="getListCount" resultType="java.lang.Integer" >
+    select 
+    count(*)
+    from t_library_apply
+  </select>
+</mapper>

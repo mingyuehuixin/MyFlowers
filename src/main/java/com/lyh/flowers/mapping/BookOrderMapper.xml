@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lyh.flowers.dao.IBookOrderDao">
+ <resultMap id="BaseResultMap" type="com.lyh.flowers.pojo.BookOrder" >
+     <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="ordernumber" property="orderNumber" jdbcType="VARCHAR" />
+    <result column="employeeid" property="employeeId" jdbcType="VARCHAR" />
+    <result column="bookid" property="bookId" jdbcType="VARCHAR" />
+    
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="applydate" property="applyDate" jdbcType="VARCHAR" />
+    <result column="borrowdate" property="borrowDate" jdbcType="VARCHAR" />
+    <result column="returndate" property="returnDate" jdbcType="VARCHAR" />
+    
+    <result column="expectreturndate" property="expectReturnDate" jdbcType="VARCHAR" />
+    <result column="createtime" property="createTime" jdbcType="VARCHAR" />
+    <result column="lastupdatetime" property="lastUpdateTime" jdbcType="VARCHAR" /> 
+  </resultMap>
+  
+   <sql id="Base_Column_List" >
+    id, orderNumber, employeeId, bookId,
+    status,applyDate,borrowDate,returnDate,
+    expectReturnDate,createTime,lastUpdateTime
+  </sql>
+  <insert id="insert" parameterType="com.lyh.flowers.pojo.BookOrder" >
+    insert into t_library_order (<include refid="Base_Column_List" />)
+    values (#{id,jdbcType=VARCHAR}, #{orderNumber,jdbcType=VARCHAR}, #{employeeId,jdbcType=VARCHAR}, #{bookId,jdbcType=VARCHAR},
+    #{status,jdbcType=VARCHAR}, #{applyDate,jdbcType=VARCHAR}, #{borrowDate,jdbcType=VARCHAR},#{returnDate,jdbcType=VARCHAR},
+    #{expectReturnDate, jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=VARCHAR})
+  </insert>
+  <select id="getCountsByEmID" resultType="java.lang.Integer">
+  select count(*)
+  from t_library_order
+  where employeeid = #{0} and status!='4' and status!="3"
+  </select>
+  
+</mapper>

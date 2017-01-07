@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lyh.flowers.dao.ISystemDao" >
+ <resultMap id="BaseResultMap" type="com.lyh.flowers.pojo.System" >
+    <result column="days" property="days" jdbcType="VARCHAR" />
+    <result column="booknums" property="bookNums" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="selectByCongigname" resultType="java.lang.String">
+  select configValue
+  from t_library_system_config
+  where configName = #{0} 
+  </select>
+  
+    <update id="updateDays"  >
+    update t_library_system_config
+    set configValue = #{0}
+    where configName = 'days'
+  </update>
+  <update id="updateBookNumbers"  >
+    update t_library_system_config
+    set configValue = #{0}
+    where configName = 'booknums'
+  </update>
+</mapper>

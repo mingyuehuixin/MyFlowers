@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lyh.flowers.dao.IMyBooksDao">
+ <resultMap id="BaseResultMap" type="com.lyh.flowers.pojo.MyBooks" >
+ 
+    <id column="t_library_order.id" property="id" jdbcType="VARCHAR" />
+    <result column="t_library_book.bookname" property="bookName" jdbcType="VARCHAR" />
+    <result column="t_library_book.authorname" property="authorName" jdbcType="VARCHAR" />
+    <result column="t_library_book.issuedate" property="issueDate" jdbcType="VARCHAR" />
+    
+    <result column="t_library_book.classify" property="classify" jdbcType="VARCHAR" />
+    <result column="t_library_book.description" property="description" jdbcType="VARCHAR" />
+    <result column="bookStatus" property="bookStatus" jdbcType="VARCHAR" />
+    <result column="t_library_order.ordernumber" property="orderNumber" jdbcType="VARCHAR" />
+    
+    <result column="t_library_order.employeeid" property="employeeId" jdbcType="VARCHAR" />
+    <result column="t_library_order.bookid" property="bookId" jdbcType="VARCHAR" />   
+    <result column="orderStatus" property="orderStatus" jdbcType="VARCHAR" />
+    <result column="t_library_order.applydate" property="applyDate" jdbcType="VARCHAR" />
+    
+    <result column="t_library_order.borrowdate" property="borrowDate" jdbcType="VARCHAR" />
+    <result column="t_library_order.returndate" property="returnDate" jdbcType="VARCHAR" />
+    <result column="t_library_order.expectreturndate" property="expectReturnDate" jdbcType="VARCHAR" />
+    <result column="t_library_order.createtime" property="createTime" jdbcType="VARCHAR" />
+    
+    <result column="t_library_order.lastupdatetime" property="lastUpdateTime" jdbcType="VARCHAR" /> 
+    <result column="t_library_employee.empName" property="empName" jdbcType="VARCHAR" /> 
+    
+    
+  </resultMap>
+  
+   <sql id="Base_Column_List"  >
+    t_library_order.id, bookName, authorName, issueDate,
+    classify,description,t_library_book.status as bookStatus,orderNumber, 
+    employeeId, bookId,t_library_order.status as orderStatus,applyDate,
+    borrowDate,returnDate,expectReturnDate,t_library_order.createTime,
+    t_library_order.lastUpdateTime,t_library_employee.empName
+  </sql>
+   <select id="getMyBooksListByEId" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List" /> from t_library_book 
+    JOIN t_library_order
+    ON t_library_book.id = t_library_order.bookid
+    JOIN t_library_employee
+    ON t_library_order.employeeId = t_library_employee.id
+    order by t_library_order.id desc
+    where t_library_order.employeeid = #{0,jdbcType=VARCHAR}
+    
+  </select>
+  <select id="getMyBooksListByLimit" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List" /> from t_library_book 
+    JOIN t_library_order
+    ON t_library_book.id = t_library_order.bookid
+    JOIN t_library_employee
+    ON t_library_order.employeeId = t_library_employee.id
+    where t_library_order.employeeid = #{0,jdbcType=VARCHAR}
+    order by t_library_order.id desc
+    limit #{1},#{2}
+  </select>
+  <select id="getListCount" resultType="java.lang.Integer">
+    select count(*)  from t_library_book 
+    JOIN t_library_order
+    ON t_library_book.id = t_library_order.bookid 
+    where t_library_order.employeeid = #{0,jdbcType=VARCHAR}
+  </select>
+  <select id="getAllListCount" resultType="java.lang.Integer">
+    select count(*)  from t_library_book 
+    JOIN t_library_order
+    ON t_library_book.id = t_library_order.bookid 
+  </select>
+  
+   <select id="getBorrowedBooksListCount" resultType="java.lang.Integer">
+    select count(*) from t_library_book 
+    JOIN t_library_order
+    ON t_library_book.id = t_library_order.bookid
+    JOIN t_library_employee
+    ON t_library_order.employeeId = t_library_employee.id
+    where t_library_order.status = 2 or t_library_order.status = 4
+    
+  </select>
+  <select id="getBooksListByLimit" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List" /> from t_library_book 
+    JOIN t_library_order
+    ON t_library_book.id = t_library_order.bookid
+    JOIN t_library_employee
+    ON t_library_order.employeeId = t_library_employee.id
+    order by t_library_order.id desc
+    limit #{1},#{2}
+  </select>
+ 
+   
+   
+ <update id="update"  parameterType="com.lyh.flowers.pojo.MyBooks">
+    update t_library_book 
+    JOIN t_library_order
+    ON t_library_book.id = t_library_order.bookid
+    JOIN t_library_employee
+    ON t_library_order.employeeId = t_library_employee.id
+    <set >
+      <if test="applyDate != null" >
+        t_library_order.applydate = #{applyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowDate != null" >
+        t_library_order.borrowdate = #{borrowDate,jdbcType=VARCHAR},
+      </if>
+      <if test="returnDate != null" >
+        t_library_order.returnDate = #{returnDate,jdbcType=INTEGER},
+      </if>
+      
+      <if test="expectReturnDate != null" >
+        t_library_order.expectReturnDate = #{expectReturnDate,jdbcType=VARCHAR},
+      </if>
+      <if test="bookStatus != null" >
+        t_library_book.status = #{bookStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        t_library_order.status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where t_library_order.id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getBorrowedBooksListByLimit" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List" /> from t_library_book 
+    JOIN t_library_order
+    ON t_library_book.id = t_library_order.bookid
+    JOIN t_library_employee
+    ON t_library_order.employeeId = t_library_employee.id
+    where t_library_order.status = #{0} or t_library_order.status = 4
+    order by t_library_order.id desc
+    limit #{1},#{2}
+  </select>
+  
+  <delete id="cancleOrder" parameterType="java.lang.String" >
+    delete from t_library_order
+    where t_library_order.id = #{0}
+  </delete>
+</mapper>
