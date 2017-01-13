@@ -2,84 +2,68 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lyh.flowers.dao.IUserDao" >
   <resultMap id="BaseResultMap" type="com.lyh.flowers.pojo.User" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="user_name" property="userName" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="age" property="age" jdbcType="INTEGER" />
+    <id column="uid" property="uid" jdbcType="VARCHAR" />
+    <result column="loginname" property="loginname" jdbcType="VARCHAR" />
+    <result column="loginpass" property="loginpass" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="activationCode" property="activationCode" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_name, password, age
+    uid, loginname, loginpass, email, status,activationCode
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from user_t
-    where id = #{id,jdbcType=INTEGER}
+    from t_user
+    where uid = #{uid,jdbcType=VARCHAR}
   </select>
+  
+  <select id="findByEmail" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select *
+    from t_user
+    where email = #{email,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select *
+    from t_user
+    where loginname = #{loginname,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="findByUidAndPassword" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select count(1)
+    from t_user
+    where uid = #{0} and loginpass=#{1}
+  </select>
+  
   <select id="loginCheck" resultMap="BaseResultMap">
-  	select * from user_t where user_name = #{0} and password = #{1}
+  	select * from t_user where loginname = #{0} and loginpass = #{1}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from user_t
-    where id = #{id,jdbcType=INTEGER}
+    delete from t_user
+     where uid = #{uid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.lyh.flowers.pojo.User" >
-    insert into user_t (id, user_name, password, 
-      age)
-    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{age,jdbcType=INTEGER})
+    insert into t_user ( uid, loginname, loginpass, email, status,activationCode)
+    values (#{uid,jdbcType=VARCHAR}, #{loginname,jdbcType=VARCHAR}, #{loginpass,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR},#{status,jdbcType=INTEGER},#{activationCode,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.lyh.flowers.pojo.User" >
-    insert into user_t
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="userName != null" >
-        user_name,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="age != null" >
-        age,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="userName != null" >
-        #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="age != null" >
-        #{age,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lyh.flowers.pojo.User" >
-    update user_t
-    <set >
-      <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="age != null" >
-        age = #{age,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+  
   <update id="updateByPrimaryKey" parameterType="com.lyh.flowers.pojo.User" >
-    update user_t
-    set user_name = #{userName,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      age = #{age,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
+    update t_user
+    set loginname = #{loginname,jdbcType=VARCHAR},
+        loginpass = #{loginpass,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+        status = #{status,jdbcType=INTEGER},
+        activationCode = #{activationCode,jdbcType=VARCHAR},
+    where uid = #{uid,jdbcType=VARCHAR}
   </update>
+   <update id="updatePassWord" parameterType="java.lang.String" >
+    update t_user
+    set 
+        loginpass = #{1}
+    where uid = #{0}
+  </update>
+  
 </mapper>

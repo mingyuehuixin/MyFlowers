@@ -1,13 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/main/java/com/lyh/flowers/controller/BooksBorrowController.java=UTF-8
-encoding//src/main/java/com/lyh/flowers/controller/BooksMController.java=UTF-8
-encoding//src/main/java/com/lyh/flowers/controller/BorrowMController.java=UTF-8
-encoding//src/main/java/com/lyh/flowers/controller/BuyApplyController.java=UTF-8
-encoding//src/main/java/com/lyh/flowers/controller/SystemController.java=UTF-8
-encoding//src/main/java/com/lyh/flowers/dao/IBookDao.java=UTF-8
-encoding//src/main/java/com/lyh/flowers/pojo/Book.java=UTF-8
-encoding//src/main/java/com/lyh/flowers/service/impl/BookServiceImpl.java=UTF-8
+encoding//src/main/java/com/lyh/flowers/controller/MainFrameController.java=UTF-8
 encoding//src/main/resources/jdbc.properties=UTF-8
 encoding//src/main/resources/log4j.properties=UTF-8
-encoding//src/main/webapp/static/css/Supernice.css=UTF-8
-encoding//src/main/webapp/static/css/navi.css=UTF-8
+encoding/<project>=UTF-8

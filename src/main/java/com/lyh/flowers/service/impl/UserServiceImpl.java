@@ -1,4 +1,7 @@
 package com.lyh.flowers.service.impl;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -13,13 +16,36 @@ public class UserServiceImpl implements IUserService {
 	private IUserDao userDao;
 	@Override
 	public User getUserById(int userId) {
-		// TODO Auto-generated method stub
 		return this.userDao.selectByPrimaryKey(userId);
 	}
 	@Override
-	public User loginCheck(String empname, String password) {
-		// TODO Auto-generated method stub
-		return userDao.loginCheck(empname, password);
+	public User loginCheck(String username, String password) {
+		return userDao.loginCheck(username, password);
+	}
+	@Override
+	public User findByEmail(String email) {
+		return this.userDao.findByEmail(email);
+	}
+	@Override
+	public User findByUserName(String loginname) {
+		return this.userDao.findByUserName(loginname);
+	}
+	@Override
+	public void insert(User user) {
+		SimpleDateFormat df=new SimpleDateFormat("yyyyMMddHHmmss");
+		String id=df.format(new Date());
+		user.setUid(id);
+		this.userDao.insert(user);
+	}
+	
+	@Override
+	public void updatePassWord(String uid, String newpass) {
+				userDao.updatePassWord(uid, newpass);
+	}
+	@Override
+	public boolean findByUidAndPassword(String uid, String oldpass) {
+			int count=userDao.findByUidAndPassword(uid, oldpass);
+		return count>0;
 	}
 
 }

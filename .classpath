@@ -28,5 +28,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="D:/Users/Administrator/Desktop/goods/WebRoot/WEB-INF/lib/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Administrator/Desktop/goods/WebRoot/WEB-INF/lib/itcast-tools-1.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
