@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lyh.flowers.dao.IFlowerDao" >
+  <resultMap id="BaseResultMap" type="com.lyh.flowers.pojo.Flower" >
+    <id column="fid" property="fid" jdbcType="CHAR" />
+    <result column="fname" property="fname" jdbcType="VARCHAR" />
+    <result column="material" property="material" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="currPrice" property="currPrice" jdbcType="DECIMAL" />
+    <result column="discount" property="discount" jdbcType="DECIMAL" />
+    <result column="flowersaying" property="flowersaying" jdbcType="VARCHAR" />
+   	<result column="packing" property="packing" jdbcType="VARCHAR" />
+   	<result column="target" property="target" jdbcType="VARCHAR" />
+   	<result column="branchnumber" property="branchnumber" jdbcType="INTEGER" />
+   	<result column="flowercolor" property="flowercolor" jdbcType="VARCHAR" />
+   	<result column="type" property="type" jdbcType="VARCHAR" />
+   	<result column="using" property="using" jdbcType="VARCHAR" />
+   	<result column="cid" property="cid" jdbcType="CHAR" />
+   	<result column="image_w" property="image_w" jdbcType="VARCHAR" />
+   	<result column="image_b" property="image_b" jdbcType="VARCHAR" />
+    <result column="orderBy" property="orderBy" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fid, fname, material, price, currPrice,discount,flowersaying,
+    packing,target,branchnumber,flowercolor,type,using,cid,
+    image_w,image_b,orderBy
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_flower
+    where fid = #{fid,jdbcType=CHAR}
+  </select>
+ 
+ <select id="findByCategory" resultMap="BaseResultMap">
+    select * 
+    from t_flower   findByFid
+    where cid=#{0} 
+    order by orderBy limit #{1},#{2}
+  </select>
+  <select id="findByFid" resultMap="BaseResultMap">
+    select * 
+    from t_flower   
+    where fid=#{0} 
+  </select>
+ 
+  
+  <select id="findFlowerCountByCategory" resultType="java.lang.Integer">
+    select count(*) 
+    from t_flower 
+    where cid=#{0}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.String" >
+   delete from t_flower where fid=#{0}
+  </delete>
+  <update id="edit" parameterType="com.lyh.flowers.pojo.Flower" >
+    update t_flower 
+    set 
+    	 fname=#{fname},
+    	 material=#{material}, 
+    	 price=#{price}, 
+    	 currPrice=#{currPrice},
+    	 discount=#{discount},
+    	 flowersaying=#{flowersaying},
+    	 packing=#{packing},
+    	 target=#{target},
+    	 branchnumber=#{branchnumber},
+    	 flowercolor=#{flowercolor},
+    	 type=#{type},
+    	 using=#{using},
+    	 cid=#{cid}
+    	image_w=#{image_w},
+    	image_b=#{image_b}	
+     where fid=#{fid}
+  </update>
+  <!--  
+   <update id="updatePassWord" parameterType="java.lang.String" >
+    update t_user
+    set 
+        loginpass = #{1}
+    where uid = #{0}
+  </update>
+  -->
+</mapper>

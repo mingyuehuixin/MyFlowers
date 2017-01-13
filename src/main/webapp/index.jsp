@@ -14,7 +14,7 @@
 	<style type="text/css">
 		*{font-size:10pt;}
 		body{text-align:center;}
-		.table{width:1000px;height:100%;border:1px solid #15B69A;border-collapse: collapse;}
+		.table{width:1000px;height:150%;border:1px solid #15B69A;border-collapse: collapse;}
 		.table td{border:1px solid #15B69A;}
 		.trTop {background: #15B69A;}
 		.tdTop {text-align: center; height: 100px;}
