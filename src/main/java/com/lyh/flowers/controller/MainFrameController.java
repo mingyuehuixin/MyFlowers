@@ -11,23 +11,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lyh.flowers.pojo.Category;
-import com.lyh.flowers.service.ICategoryService;
-import com.lyh.flowers.service.IMainFrameService;
+import com.lyh.flowers.service.impl.CategoryServiceImpl;
+import com.lyh.flowers.service.impl.MainFrameImpl;
 
 @Controller
 @RequestMapping("/mainFrame")
 public class MainFrameController {
 	@Resource
-	private IMainFrameService mFrameService;
+	private MainFrameImpl mFrameService;
 	
 	@Resource
-	private ICategoryService categoryService;
+	private CategoryServiceImpl categoryService;
 	
-	@RequestMapping("/index")
-	public String index(HttpServletRequest request,Model model){
-		
-		return "mainFrame/index";
-	}
+//	@RequestMapping("/index")
+//	public String index(HttpServletRequest request,Model model){
+//		
+//		return "mainFrame/index";
+//	}
 	
 	@RequestMapping("/main")
 	public String main(HttpServletRequest request,Model model){

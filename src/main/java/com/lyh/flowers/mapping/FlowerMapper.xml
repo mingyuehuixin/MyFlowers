@@ -14,7 +14,7 @@
    	<result column="branchnumber" property="branchnumber" jdbcType="INTEGER" />
    	<result column="flowercolor" property="flowercolor" jdbcType="VARCHAR" />
    	<result column="type" property="type" jdbcType="VARCHAR" />
-   	<result column="using" property="using" jdbcType="VARCHAR" />
+   	<result column="makeuse" property="makeuse" jdbcType="VARCHAR" />
    	<result column="cid" property="cid" jdbcType="CHAR" />
    	<result column="image_w" property="image_w" jdbcType="VARCHAR" />
    	<result column="image_b" property="image_b" jdbcType="VARCHAR" />
@@ -22,7 +22,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     fid, fname, material, price, currPrice,discount,flowersaying,
-    packing,target,branchnumber,flowercolor,type,using,cid,
+    packing,target,branchnumber,flowercolor,type,makeuse,cid,
     image_w,image_b,orderBy
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -32,9 +32,28 @@
     where fid = #{fid,jdbcType=CHAR}
   </select>
  
+  <select id="findByType" resultMap="BaseResultMap" >
+    select *
+    from t_flower
+    where (#{0}="-1"||material like CONCAT(CONCAT('%',#{0}),'%'))
+    		and (#{1}="-1"||target=#{1}) 
+    		and (#{2}="-1"||branchnumber=#{2}) 
+    		and (#{3}="-1"||flowercolor=#{3}) 
+    		and (#{4}="-1"||makeuse=#{4})
+    		and (#{5}="-1"||type=#{5})
+    limit #{6},#{7} 
+  </select>
+  
+  <select id="findByPrice" resultMap="BaseResultMap" >
+    select *
+    from t_flower
+    where currPrice between #{0} and #{1}
+    limit #{2},#{3} 
+  </select>
+ 
  <select id="findByCategory" resultMap="BaseResultMap">
     select * 
-    from t_flower   findByFid
+    from t_flower   
     where cid=#{0} 
     order by orderBy limit #{1},#{2}
   </select>

@@ -17,13 +17,7 @@
     from t_category
     where cid = #{cid,jdbcType=CHAR}
   </select>
- <!--   
-  <select id="findParents" resultMap="BaseResultMap">
-    select * 
-    from t_category 
-    where pid is null order by orderBy
-  </select>
-  -->
+
   <select id="findAll" resultMap="BaseResultMap">
     select * 
     from t_category 

@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 
+
+
+import com.lyh.flowers.pojo.Category;
 import com.lyh.flowers.pojo.Flower;
 import com.lyh.flowers.pojo.PageBean;
+import com.lyh.flowers.service.impl.CategoryServiceImpl;
 import com.lyh.flowers.service.impl.FlowerServiceImpl;
 
 
@@ -24,6 +28,8 @@ public class FlowerController {
 	
 	@Resource
 	private FlowerServiceImpl flowerService;
+	@Resource
+	private CategoryServiceImpl categoryService;
 
 	/**
 	 * 获取当前页码
@@ -56,9 +62,16 @@ public class FlowerController {
 	
 	@RequestMapping(value="/flowerList/{cid}",method={RequestMethod.GET})
 	public String flowerList(@PathVariable String cid,HttpServletRequest request,Model model){
+//		System.out.println("cid="+cid);
+		Category category=categoryService.load(cid);
+		String pid=category.getPid();
+		String cname=category.getCname();
 		int pc = getPc(request);
 		String url = getUrl(request);
-		PageBean<Flower> pb = flowerService.findByCategory(cid, pc);
+//		PageBean<Flower> pb = flowerService.findByCategory(cid, pc);
+		PageBean<Flower> pb=flowerService.findByType(pid, cname, cid, pc);
+		
+//		System.out.println(pb);
 		pb.setUrl(url);
 		model.addAttribute("pb", pb);
 		return "flower/list";

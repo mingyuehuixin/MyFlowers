@@ -14,7 +14,7 @@ public class Flower {
 	private int branchnumber;//支数
 	private String flowercolor;//颜色
 	private String type;//类型
-	private String using;//用途
+	private String makeuse;//用途
 	private String cid;//所属分类
 	private int orderBy;//支数
 //	private Category category;//所属分类
@@ -93,11 +93,12 @@ public class Flower {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getUsing() {
-		return using;
+
+	public String getMakeuse() {
+		return makeuse;
 	}
-	public void setUsing(String using) {
-		this.using = using;
+	public void setMakeuse(String makeuse) {
+		this.makeuse = makeuse;
 	}
 	public String getCid() {
 		return cid;

@@ -51,8 +51,7 @@ public class CategoryServiceImpl implements ICategoryService {
 
 	@Override
 	public Category load(String cid) {
-		// TODO Auto-generated method stub
-		return null;
+		return categoryDao.load(cid);
 	}
 
 	@Override
