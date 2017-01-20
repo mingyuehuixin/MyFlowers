@@ -8,7 +8,7 @@ public class Category {
 	private String pid;
 	private String cname;// 分类名称
 	private Category parent;// 父分类
-	private String desc;// 分类描述
+	private String cdesc;// 分类描述
 	private List<Category> children;// 子分类
 	private int orderBy;
 	public String getPid() {
@@ -42,22 +42,25 @@ public class Category {
 	public void setParent(Category parent) {
 		this.parent = parent;
 	}
-	public String getDesc() {
-		return desc;
-	}
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
+	
 	public List<Category> getChildren() {
 		return children;
 	}
 	public void setChildren(List<Category> children) {
 		this.children = children;
 	}
+	
+	
+	public String getCdesc() {
+		return cdesc;
+	}
+	public void setCdesc(String cdesc) {
+		this.cdesc = cdesc;
+	}
 	@Override
 	public String toString() {
 		return "Category [cid=" + cid + ", cname=" + cname + ", parent="
-				+ parent + ", desc=" + desc + ", children=" + children + "]";
+				+ parent + ", desc=" + cdesc + ", children=" + children + "]";
 	}
 	
 }

@@ -102,7 +102,7 @@ public class FlowerServiceImpl implements IFlowerService {
 		case "7":type=cname;
 			break;
 		}
-		int ps = 12;//每页记录数
+		int ps = 6;//每页记录数
 		int count=findFlowerCountByCategory(cid);//鲜花总记录数
 		
 		List<Flower> flowerList;

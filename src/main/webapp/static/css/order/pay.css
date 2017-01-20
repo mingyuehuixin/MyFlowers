@@ -54,7 +54,7 @@ img {
 }
 
 .linkNext {
-	background: url(/goods/images/icon2.png) no-repeat;
+	background: url(../../image/icon2.png) no-repeat;
 	display: inline-block;
 	background-position: 0 -35px;
 	height: 40px;
@@ -70,7 +70,7 @@ img {
 }
 
 .linkNext:HOVER {
-	background: url(/goods/images/icon2.png) no-repeat;
+	background: url(../../image/icon2.png) no-repeat;
 	display: inline-block;
 	background-position: 0 -75px;
 	height: 40px;

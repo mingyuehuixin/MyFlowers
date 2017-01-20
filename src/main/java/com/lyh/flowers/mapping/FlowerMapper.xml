@@ -93,12 +93,4 @@
     	image_b=#{image_b}	
      where fid=#{fid}
   </update>
-  <!--  
-   <update id="updatePassWord" parameterType="java.lang.String" >
-    update t_user
-    set 
-        loginpass = #{1}
-    where uid = #{0}
-  </update>
-  -->
 </mapper>

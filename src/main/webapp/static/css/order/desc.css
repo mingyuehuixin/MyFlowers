@@ -63,7 +63,7 @@ dt {
 
 .title {
 	border: 1px solid #d0d0d0;
-	background: url(/goods/images/bg_btns.png) repeat-x;
+	background: url(../../image/bg_btns.png) repeat-x;
 	background-position: 0 -132px;
 	margin-left: 2px;
 	height: 30px;
@@ -79,7 +79,7 @@ td .bookname {
 }
 
 .pay {
-	background: url(/goods/images/sprites_orderdetails.gif)
+	background: url(../../image/sprites_orderdetails.gif)
 		no-repeat;
 	display: inline-block;
 	background-position: 0 -200px;
@@ -110,7 +110,7 @@ a {
 }
 
 #confirm {
-	background: url(/goods/images/confirm.jpg) no-repeat;
+	background: url(../../image/confirm.jpg) no-repeat;
 	display: inline-block;
 	height: 34px;
 	width: 142px;
@@ -123,7 +123,7 @@ a {
 }
 
 #cancel {
-	background: url(/goods/images/hei_1_btn.jpg) no-repeat;
+	background: url(../../image/hei_1_btn.jpg) no-repeat;
 	display: inline-block;
 	height: 34px;
 	width: 142px;

@@ -11,9 +11,9 @@ public interface ICategoryDao {
 //	List<Category> findParents();
 	List<Category> findByParent(String pid);
 	
-	void add(Category category);
+	void add(String cid,String cname,String pid,String cdesc);
 	Category load(String cid);
-	void edit(Category category);
+	void edit(String cid,String cname,String pid,String cdesc );
 	int findChildrenCountByParent(String pid);
 	void delete(String cid);
 }

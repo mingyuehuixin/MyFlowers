@@ -1,84 +1,90 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-  <head>
-    <title>鲜花列表</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<head>
+<title>鲜花列表</title>
+
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+
+<style type="text/css">
+/*= Reset CSS 
+============= */
+html, body {border: 0; margin: 0; padding: 0;}
+body { font: 14px "Lato", Arial, sans-serif; min-width: 100%; min-height: 100%; color: #666; }
+.container{margin: 0 auto; max-width: 1060px;}
+h2{color: #fff; float: left; width: 100%; font-size: 24px; font-weight: 400; text-align: center; padding: 50px 0 40px; position: relative; z-index: 50;}
+h2 span{position: relative; padding-bottom: 10px;}
+h2 span:after{content: ""; width: 50%; height: 3px; background-color: #fff; position: absolute; left: 25%; bottom: 0;}
+*{margin: 0; padding: 0; box-sizing: border-box;}
+img{max-width: 100%; vertical-align: middle;}
+ul{margin: 0 -1.5%;}
+li{float: left; width: 31.33%; margin: 10px 1%; list-style: none;}
+
+h3{font-size: 20px; margin: 5px 0 10px;}
+p{font-weight: 300; line-height: 20px; font-size: 14px; margin-bottom: 15px;}
+.btn{display: inline-block; padding: 5px 10px; font-size: 14px; color: #fff; border: 2px solid #4d92d9; background-color: #4d92d9; text-decoration: none; transition: 0.4s;}
+.btn:hover{background-color: transparent; color: #4d92d9; transition: 0.4s;}
+.text-desc{position: absolute; left: 0; top: 0; background-color: #fff; height: 100%; opacity: 0; width: 100%; padding: 20px;}
+/*= Reset CSS End
+/* effect-6 css */
+.port-6{float: left; width: 100%; position: relative; overflow: hidden; text-align: center; border: 4px solid rgba(255, 255, 255, 0.9); overflow: visible;}
+
+.port-6.effect-3 img{transition: 0.5s;}
+.port-6.effect-3:hover img{transform: scale(0.3) translateY(-110%); position: relative; z-index: 9;}
+.port-6.effect-3 .text-desc{transform: translateY(100%); opacity: 0; padding: 85px 20px 10px; transition: 0.5s;}
+.port-6.effect-3:hover .text-desc{transform: translateY(0px); opacity: 1;}
+/* effect-6 css end */
+</style>
+
+</head>
+
+<body>
+	<ul>
+		<c:forEach items="${pb.beanList }" var="flower">
+				<li>
+					<div class="port-6 effect-3">
+						<div class="image-box">
+						<a href="<c:url value='/flower/loadDesc/${flower.fid }'/>">
+							<img src="${pageContext.request.contextPath}/${flower.image_b }" alt="Image-3">
+						</a>
+						</div>
+						<div class="text-desc">
+							<a style="text-decoration: none;" href="<c:url value='/flower/loadDesc/${flower.fid }'/>">
+							<h3>${flower.fname }</h3>
+							</a>
+							<p>
+								<span style="color:999; text-decoration: line-through;">市场价：&yen;${flower.price }</span>
+								<br> 
+    							<span style="color:red">特惠价：&yen;${flower.currPrice }</span>
+							<p>	
+							<a href="<c:url value='/cart/addCart/${flower.fid }'/>" class="btn">加入购物车</a>
+							</p>
+							
+								
+						</div>
+					</div>
+				</li>
+				
+				
+		</c:forEach>
+			</ul>
 	
-	<link rel="stylesheet" type="text/css" href="<c:url value='${pageContext.request.contextPath}/static/css/flower/list.css'/>">
-	<link rel="stylesheet" type="text/css" href="<c:url value='${pageContext.request.contextPath}/static/css/pager.css'/>" />
-    <script type="text/javascript" src="<c:url value='../static/js/pager.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='../static/js/jquery-1.5.1.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='${pageContext.request.contextPath}/static/js/flower/list.js'/>"></script>
-  </head>
 
-  <body>
 
-<!--  
-<ul>
-<c:forEach items="${pb.beanList }" var="flower">
-  <li>
-  <div class="inner">
-    <a class="pic" href="<c:url value='/BookServlet?method=load&fid=${flower.fid }'/>"><img src="${pageContext.request.contextPath}/${flower.image_b }" border="0"/></a>
-    <p class="price">
-		<span class="price_n">&yen;${flower.currPrice }</span>
-		<span class="price_r">&yen;${flower.price }</span>
-		(<span class="price_s">${flower.discount }折</span>)
-	</p>
-	<p><a id="flowername" title="${flower.fname }" href="<c:url value='/BookServlet?method=load&bid=${flower.fid }'/>">${flower.fname }</a></p>
-	<%-- url标签会自动对参数进行url编码 --%>
-	<c:url value="/BookServlet" var="authorUrl">
-		<c:param name="method" value="findByAuthor"/>
-		<c:param name="author" value="${book.author }"/>
-	</c:url>
-	<c:url value="/BookServlet" var="pressUrl">
-		<c:param name="method" value="findByPress"/>
-		<c:param name="press" value="${flower.flowersaying }"/>
-	</c:url>
-	<p><a href="${authorUrl }" name='P_zz' title='${book.author }'>${book.author }</a></p>
-  </div>
-  </li>
-</c:forEach>
-
-</ul>
--->
-<ul>
-<c:forEach items="${pb.beanList }" var="flower">
-  <li>
-    <a class="pic" href="<c:url value='/flower/loadDesc/${flower.fid }'/>">
-    <img src="${pageContext.request.contextPath}/${flower.image_b }" border="0"/>
-    <h3> ${flower.fname } </h3>
-   	<span class="jg">
-   	 <i>&yen;${flower.currPrice }</i>
-   	 <del>&yen;${flower.price }</del>
-   	</span>
-   	<span class="tj"></span>
-   	</a>
-	<div class="lan">
-		<a class="aa1" href="">加入收藏</a>
-		<a class="aa2" href="">加入购物车</a>
+	<div style="float: left; width: 100%; text-align: center;">
+		<hr />
+		<br />
+		<%@include file="../pager/pager.jsp"%>
 	</div>
-  </li>
-</c:forEach>
 
-</ul>
+</body>
 
-<div style="float:left; width: 100%; text-align: center;">
-	<hr/>
-	<br/>
-	<%@include file="../pager/pager.jsp" %>
-</div>
-
-  </body>
- 
 </html>
 

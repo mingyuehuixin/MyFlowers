@@ -68,7 +68,6 @@ public class FlowerController {
 		String cname=category.getCname();
 		int pc = getPc(request);
 		String url = getUrl(request);
-//		PageBean<Flower> pb = flowerService.findByCategory(cid, pc);
 		PageBean<Flower> pb=flowerService.findByType(pid, cname, cid, pc);
 		
 //		System.out.println(pb);

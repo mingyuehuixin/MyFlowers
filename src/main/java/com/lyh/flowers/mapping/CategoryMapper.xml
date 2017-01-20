@@ -5,11 +5,11 @@
     <id column="cid" property="cid" jdbcType="CHAR" />
     <result column="cname" property="cname" jdbcType="VARCHAR" />
     <result column="pid" property="pid" jdbcType="CHAR" />
-    <result column="desc" property="desc" jdbcType="VARCHAR" />
+    <result column="cdesc" property="cdesc" jdbcType="VARCHAR" />
     <result column="orderBy" property="orderBy" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    cid, cname, pid, desc, orderBy
+    cid, cname, pid, cdesc, orderBy
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -25,18 +25,14 @@
   </select>
   
   
+  
   <select id="findByParent" resultMap="BaseResultMap" parameterType="java.lang.String" >
    select * 
    from t_category 
    where pid=#{0} order by orderBy
   </select>
   
-   <select id="findParents" resultMap="BaseResultMap" parameterType="java.lang.String">
-    select count(1)
-    from t_user
-    where uid = #{0} and loginpass=#{1}
-  </select>
-  
+
   <select id="load" resultMap="BaseResultMap">
   	select * 
   	from t_category 
@@ -49,26 +45,18 @@
   	where pid=#{0}
   </select>
   
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="delete" parameterType="java.lang.String" >
    delete from t_category where cid=#{0}
   </delete>
   <insert id="add" parameterType="com.lyh.flowers.pojo.Category" >
-    insert into t_category(cid,cname,pid,desc)
-     values(#{0},#{1},#{2},#{3})
+    insert into t_category ( cid, cname, pid, cdesc )
+        values ( #{0}, #{1}, #{2}, #{3} )
   </insert>
   
-  <update id="edit" parameterType="com.lyh.flowers.pojo.Category" >
-    
+  <update id="edit" parameterType="com.lyh.flowers.pojo.Category" >  
     update t_category 
-    set cname=#{1}, pid=#{2}, desc=#{3} 
+    set cname=#{1}, pid=#{2}, cdesc=#{3} 
     where cid=#{0}
-   
-  </update>
-   <update id="updatePassWord" parameterType="java.lang.String" >
-    update t_user
-    set 
-        loginpass = #{1}
-    where uid = #{0}
   </update>
   
 </mapper>

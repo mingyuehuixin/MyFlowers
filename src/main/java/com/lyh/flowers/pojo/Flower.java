@@ -124,5 +124,17 @@ public class Flower {
 	public void setImage_b(String image_b) {
 		this.image_b = image_b;
 	}
+	@Override
+	public String toString() {
+		return "Flower [fid=" + fid + ", fname=" + fname + ", material="
+				+ material + ", price=" + price + ", currPrice=" + currPrice
+				+ ", discount=" + discount + ", flowersaying=" + flowersaying
+				+ ", packing=" + packing + ", target=" + target
+				+ ", branchnumber=" + branchnumber + ", flowercolor="
+				+ flowercolor + ", type=" + type + ", makeuse=" + makeuse
+				+ ", cid=" + cid + ", orderBy=" + orderBy + ", image_w="
+				+ image_w + ", image_b=" + image_b + "]";
+	}
+	
 	
 }

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 
+
 import com.lyh.flowers.dao.ICategoryDao;
 import com.lyh.flowers.pojo.Category;
 import com.lyh.flowers.service.ICategoryService;
@@ -34,7 +35,8 @@ public class CategoryServiceImpl implements ICategoryService {
 
 	@Override
 	public List<Category> findParents() {
-		return null;
+		
+		return categoryDao.findAll();
 	}
 
 	@Override
@@ -45,8 +47,12 @@ public class CategoryServiceImpl implements ICategoryService {
 
 	@Override
 	public void add(Category category) {
-		// TODO Auto-generated method stub
-
+		
+		String pid = null;//一级分类
+		if(category.getPid() != null) {
+			pid = category.getPid();
+		}
+		categoryDao.add(category.getCid(), category.getCname(), pid, category.getCdesc());
 	}
 
 	@Override
@@ -56,20 +62,21 @@ public class CategoryServiceImpl implements ICategoryService {
 
 	@Override
 	public void edit(Category category) {
-		// TODO Auto-generated method stub
-
+		String pid = null;//一级分类
+		if(category.getPid() != null) {
+			pid = category.getPid();
+		}
+		categoryDao.edit(category.getCid(), category.getCname(), pid, category.getCdesc());
 	}
 
 	@Override
 	public int findChildrenCountByParent(String pid) {
-		// TODO Auto-generated method stub
-		return 0;
+		return categoryDao.findChildrenCountByParent(pid);
 	}
 
 	@Override
 	public void delete(String cid) {
-		// TODO Auto-generated method stub
-
+		categoryDao.delete(cid);
 	}
 
 }

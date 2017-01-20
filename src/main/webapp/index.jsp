@@ -13,8 +13,10 @@
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
 	<style type="text/css">
 		*{font-size:10pt;}
-		body{text-align:center;}
-		.table{width:1000px;height:150%;border:1px solid #15B69A;border-collapse: collapse;}
+		body{text-align:center;
+	/*	background-image: url("./static/image/templatemo_main.png");*/
+		}
+		.table{width:1100px;height:150%;border:1px solid #15B69A;border-collapse: collapse;}
 		.table td{border:1px solid #15B69A;}
 		.trTop {background: #15B69A;}
 		.tdTop {text-align: center; height: 100px;}

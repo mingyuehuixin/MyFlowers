@@ -102,9 +102,6 @@ public class UserController {
 	
 	@RequestMapping(value="/login",method={RequestMethod.GET})
 	public String login(HttpServletRequest request,Model model){
-		//Map<String,Object> root = new HashMap<String,Object>();  
-      //  root.put("username", "ajun");  
-       // emailService.sendTemplateMail(root,"1286005044@qq.com","DDCͼ�����ϵͳ","render.html");
 		return "user/login";
 	}
 	
@@ -139,7 +136,6 @@ public class UserController {
 				return "redirect:/index.jsp";
 			}
 		}
-//		return "user/regist";
 	}
 	
 	
