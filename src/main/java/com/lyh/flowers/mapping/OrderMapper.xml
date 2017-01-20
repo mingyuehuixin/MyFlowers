@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lyh.flowers.dao.IOrderDao" >
+  <resultMap id="BaseResultMap" type="com.lyh.flowers.pojo.Order" >
+    <id column="oid" property="oid" jdbcType="CHAR" />
+    <result column="ordertime" property="ordertime" jdbcType="CHAR" />
+    <result column="total" property="total" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+   <result column="address" property="address" jdbcType="CHAR" />
+    <result column="uid" property="uid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    oid, ordertime, total, status, address, uid
+  </sql>
+ 
+  <select id="findStatus" resultType="java.lang.Integer">
+	  select status 
+	  from t_order 
+	  where oid=#{0}
+  </select>
+  
+   <select id="findCount" resultType="java.lang.Integer">
+    select count(*) 
+    from t_order 
+    where uid=#{0}
+  </select>
+  
+  <select id="findCountByStatus" resultType="java.lang.Integer">
+    select count(*) 
+    from t_order 
+    where status=#{0}
+  </select>
+   <select id="findAllCount" resultType="java.lang.Integer">
+    select count(*) 
+    from t_order 
+  </select>
+  
+  <select id="load" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   select * from t_order where oid=#{0}
+  </select>
+  
+  <select id="findByStatus" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+   select * 
+   from t_order 
+   where status=#{0}
+   limit #{1},#{2}
+  </select>
+  
+  <select id="findAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+   select * 
+   from t_order
+   limit #{0},#{1}
+  </select>
+  
+   <select id="findByUser" resultMap="BaseResultMap">
+    select * 
+    from t_order
+     where uid=#{0}
+     limit #{1},#{2}
+  </select>
+  
+  
+  <insert id="add" parameterType="com.lyh.flowers.pojo.Order" >
+   insert into t_order(oid, ordertime, total, status, address, uid)
+             values(#{0},#{1},#{2},#{3},#{4},#{5})
+  </insert>
+  
+  <update id="updateStatus" >
+    
+   update t_order set status=#{1} 
+   where oid=#{0}
+   
+  </update>
+</mapper>

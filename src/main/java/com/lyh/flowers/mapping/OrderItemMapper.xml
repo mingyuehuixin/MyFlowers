@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lyh.flowers.dao.IOrderItemDao" >
+  <resultMap id="BaseResultMap" type="com.lyh.flowers.pojo.OrderItem" >
+    <id column="orderItemId" property="orderItemId" jdbcType="CHAR" />
+    <result column="quantity" property="quantity" jdbcType="INTEGER" />
+    <result column="subtotal" property="subtotal" jdbcType="DECIMAL" />
+    <result column="fid" property="fid" jdbcType="CHAR" />
+    <result column="fname" property="fname" jdbcType="VARCHAR" />
+    <result column="currPrice" property="currPrice" jdbcType="DECIMAL" />
+  	<result column="image_b" property="image_b" jdbcType="VARCHAR" />
+    <result column="oid" property="oid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orderItemId, quantity, subtotal, fid, fname, currPrice, image_b, oid
+  </sql>
+ 
+  <select id="loadOrderItem" resultMap="BaseResultMap" parameterType="java.lang.String" >
+	  select * 
+	  from t_orderitem 
+	  where oid=#{0}
+  </select>
+  
+  <insert id="addOrderItem" parameterType="com.lyh.flowers.pojo.OrderItem" >
+   insert into t_orderitem(orderItemId, quantity, subtotal, fid, fname, currPrice, image_b, oid)
+             values(#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7})
+  </insert>
+  
+</mapper>

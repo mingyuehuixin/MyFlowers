@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lyh.flowers.dao.ICartItemDao" >
+  <resultMap id="BaseResultMap" type="com.lyh.flowers.pojo.CartItem" >
+    <id column="cartItemId" property="cartItemId" jdbcType="CHAR" />
+    <result column="quantity" property="quantity" jdbcType="INTEGER" />
+    <result column="fid" property="fid" jdbcType="CHAR" />
+    <result column="uid" property="uid" jdbcType="CHAR" />
+    <result column="orderBy" property="orderBy" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cartItemId, quantity, fid, uid, orderBy
+  </sql>
+ 
+<!-- 加载多个cartItems值 -->
+  <select id="loadCartItem" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   select * 
+   from t_cartitem c, t_flower f 
+   where c.fid=f.fid and cartItemId =#{0}  
+  </select>
+  
+  
+  <select id="findByCartItemId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   select * 
+   from t_cartItem c, t_flower f 
+   where c.fid=f.fid 
+        and c.cartItemId=#{0}
+  </select>
+  
+   <select id="findByUidAndFid" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select * 
+    from t_cartitem
+     where uid=#{0} and fid=#{1}
+  </select>
+  
+  <select id="findByUser" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select * 
+  	from t_cartitem c, t_flower f
+  	where c.fid=f.fid and uid=#{0} 
+  	order by c.orderBy
+  </select>
+  
+  
+  <delete id="delete" parameterType="java.lang.String" >
+  delete from t_cartitem where cartItemId =#{0}
+  </delete>
+  <insert id="addCartItem" parameterType="com.lyh.flowers.pojo.CartItem" >
+   insert into t_cartitem(cartItemId, quantity, fid, uid)
+             values(#{0},#{1},#{2},#{3})
+  </insert>
+  
+  <update id="updateQuantity" parameterType="java.lang.String" >
+    
+    update t_cartitem
+     set 
+     quantity=#{1} 
+     where cartItemId=#{0}
+   
+  </update>
+</mapper>
