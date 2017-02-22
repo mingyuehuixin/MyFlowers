@@ -1,0 +1,123 @@
+#PanelTop {
+    background: url(../../static/image/top-bg.png) no-repeat;
+    height: 28px;
+    overflow: hidden;
+}
+.warp {
+    width: 1000px;
+}
+#TopMenu {
+    margin-right: 5px;
+}
+.fr {
+    float: right;
+}
+#TopMenu li {
+    float: left;
+    padding: 0 8px;
+    background: url(../../static/image/line-split.png) no-repeat left center;
+}
+li {
+    list-style: none;
+}
+#WelcomeText {
+    margin-right: 8px;
+}
+#TopMenu li, #WelcomeText {
+    height: 28px;
+    line-height: 28px;
+}
+#PanelHead {
+    height: 80px;
+}
+#Logo {
+    margin-top: 15px;
+}
+.fl {
+    float: left;
+}
+img {
+    border: 0;
+}
+#MainNavBox {
+    height: 35px;
+    background: url(../../static/image/nav-bg.png) no-repeat;
+}
+.frameMarginBot {
+    margin-bottom: 10px;
+}
+#SchBox {
+    margin-top: 6px;
+    margin-right: 6px;
+    width: 255px;
+}
+#SchBox p {
+    background: url(../../static/image/schbox-submit-bg.png) repeat-x;
+    width: 50px;
+    text-align: center;
+    font-weight: bold;
+    margin-left: -1px;
+}
+#SchBox p, #SchBox input {
+    height: 23px;
+    line-height: 23px;
+    float: right;
+    padding: 0 3px;
+}
+#SchBox input {
+    border: 0;
+    background: url(../../static/image/schbox-input-bg.png) no-repeat;
+    width: 194px;
+}
+#NavBox {
+    margin-left: 6px;
+}
+html, body, p, div, li, ul, form, ol, dt, h1, h2, h3, h4, h5 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+    font-family: Arial,SimSun;
+}
+#NavBox li {
+    float: left;
+    height: 35px;
+    background: url(../../static/image/nav-line.png) no-repeat right center;
+}
+li {
+    list-style: none;
+}
+#NavBox p {
+    width: 82px;
+    line-height: 35px;
+    margin-right: 2px;
+    text-align: center;
+}
+#NavBox a {
+    color: #FFF;
+    font-weight: bold;
+    font-family: Microsoft YaHei;
+    font-size: 14px;
+}
+a {
+    text-decoration: none;
+    color: #4e4e4e;
+}
+a:link{color:#000000}
+a:visited{color:#BA55D3}
+a:hover{color:#FFD700}
+a:active{color:#FF0000}
+
+#SubNavBox {
+    height: 27px;
+    background: url(../../static/image/sub-nav-bg.png) no-repeat;
+    overflow: hidden;
+}
+#SubNavBox ul {
+    margin-left: 6px;
+}
+#SubNavBox li {
+    float: left;
+    background: url(../../static/image/sub-nav-line.gif) no-repeat right center;
+    line-height: 27px;
+    padding: 0 12px 0 10px;
+}

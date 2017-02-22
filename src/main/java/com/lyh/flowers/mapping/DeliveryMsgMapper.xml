@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lyh.flowers.dao.IDeliveryMsgDao" >
+  <resultMap id="BaseResultMap" type="com.lyh.flowers.pojo.DeliveryMsg" >
+    <id column="did" property="did" jdbcType="CHAR" />
+    <result column="uid" property="uid" jdbcType="CHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    did, uid, address, name, phone
+  </sql>
+  
+  
+  <select id="findByUid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select *
+    from t_delivery
+    where uid = #{uid,jdbcType=CHAR}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.String" >
+    delete from t_delivery
+     where did = #{did,jdbcType=CHAR}
+  </delete>
+  <insert id="add" parameterType="com.lyh.flowers.pojo.DeliveryMsg" >
+    insert into t_delivery ( did, uid, address, name, phone)
+    values (#{did,jdbcType=CHAR}, #{uid,jdbcType=CHAR}, #{address,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR},#{phone,jdbcType=CHAR})
+  </insert>
+  
+  <update id="update" parameterType="com.lyh.flowers.pojo.DeliveryMsg" >
+    update t_delivery
+    set address = #{address,jdbcType=VARCHAR},
+        name = #{name,jdbcType=VARCHAR},
+        phone = #{phone,jdbcType=CHAR},
+    where did = #{did,jdbcType=CHAR}
+  </update>
+  
+</mapper>

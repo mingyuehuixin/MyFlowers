@@ -1,0 +1,60 @@
+html, body, p, div, li, ul, form, ol, dt, h1, h2, h3, h4, h5 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+    font-family: Arial,SimSun;
+	
+}
+#LeftPanel {
+    width: 205px;
+}
+.fl {
+    float: left;
+}
+.LeftTitleRed {
+    background: url(../../static/image/lct-red.png) no-repeat;
+}
+.LeftTitle {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 15px;
+    font-weight: normal;
+}
+.TextWhite {
+    color: #fff;
+}
+.LeftColumnBox {
+    border-left: 1px #d7d7d7 solid;
+    border-right: 1px #d7d7d7 solid;
+}
+.cf {
+    clear: both;
+}
+.lct2d {
+    background: url(../../static/image/lct-2d.png) no-repeat;
+    line-height: 25px;
+    padding-left: 27px;
+}
+.TextCoffee {
+    color: #b06a24;
+}
+.lct2dList {
+    margin: 0 5px;
+}
+.lct2dList li {
+    float: left;
+    margin: 7px 0;
+    padding: 0 7px;
+    border-right: 1px #ccc solid;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: #4e4e4e;
+}
+
+a:visited{color:#BA55D3}
+a:hover{color:#FFD700}
+a:active{color:#FF0000}
