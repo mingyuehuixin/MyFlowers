@@ -25,6 +25,15 @@
     packing,target,branchnumber,flowercolor,type,makeuse,cid,
     image_w,image_b,orderBy
   </sql>
+  
+  <insert id="add" parameterType="com.lyh.flowers.pojo.Flower" >
+    insert into 
+           t_flower ( fid, fname, material, price, currPrice,discount,flowersaying,
+                     packing,target,branchnumber,flowercolor,type,makeuse,cid,image_w,image_b)
+    values (#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},
+            #{10},#{11},#{12},#{13},#{14},#{15})
+  </insert>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
@@ -35,13 +44,24 @@
   <select id="findByType" resultMap="BaseResultMap" >
     select *
     from t_flower
-    where (#{0}="-1"||material like CONCAT(CONCAT('%',#{0}),'%'))
+    where ( (#{0}="-1"||material like CONCAT(CONCAT('%',#{0},'%')))
     		and (#{1}="-1"||target=#{1}) 
     		and (#{2}="-1"||branchnumber=#{2}) 
     		and (#{3}="-1"||flowercolor=#{3}) 
     		and (#{4}="-1"||makeuse=#{4})
     		and (#{5}="-1"||type=#{5})
+    		)
     limit #{6},#{7} 
+  </select>
+  
+  <select id="findBySeachKey" resultMap="BaseResultMap" >
+    select *
+    from t_flower
+    where ((material like CONCAT(CONCAT('%',#{0},'%')))
+    		or (fname like CONCAT(CONCAT('%',#{1},'%')))
+    		or (makeuse like CONCAT(CONCAT('%',#{2},'%')))
+    		)
+    limit #{3},#{4} 
   </select>
   
   <select id="findByPrice" resultMap="BaseResultMap" >
@@ -70,6 +90,15 @@
     where cid=#{0}
   </select>
   
+  <select id="findCount" resultType="java.lang.Integer">
+    select count(*) 
+    from t_flower 
+    where ((material like CONCAT(CONCAT('%',#{0},'%')))
+    		or (fname like CONCAT(CONCAT('%',#{1},'%')))
+    		or (makeuse like CONCAT(CONCAT('%',#{2},'%')))
+    		)
+  </select>
+  
   <delete id="delete" parameterType="java.lang.String" >
    delete from t_flower where fid=#{0}
   </delete>
@@ -87,8 +116,8 @@
     	 branchnumber=#{branchnumber},
     	 flowercolor=#{flowercolor},
     	 type=#{type},
-    	 using=#{using},
-    	 cid=#{cid}
+    	 makeuse=#{makeuse},
+    	 cid=#{cid},
     	image_w=#{image_w},
     	image_b=#{image_b}	
      where fid=#{fid}

@@ -15,9 +15,7 @@ public interface IFlowerService {
 	
 	public PageBean<Flower> findByCategory(String cid, int pc);
 	
-//	public List<Flower> findByType(String price,String material,String target,
-//			String branchnumber,String flowercolor,String using,String type,
-//			int start,int limit);
+	public void add(Flower flower);
 	public PageBean<Flower> findByType(String pid,String cname,String cid,int pc);
-
+	public PageBean<Flower> seachByKeyWord(String keyword,int pc);
 }

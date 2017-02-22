@@ -25,7 +25,7 @@ public class CategoryServiceImpl implements ICategoryService {
 		 */
 		for(Category parent : parents) {
 			// 查询出当前父分类的所有子分类
-			List<Category> children =findByParent(parent.getCid());
+			List<Category> children =findChildren(parent.getCid());
 			// 设置给父分类
 			parent.setChildren(children);
 		}
@@ -40,7 +40,7 @@ public class CategoryServiceImpl implements ICategoryService {
 	}
 
 	@Override
-	public List<Category> findByParent(String pid) {
+	public List<Category> findChildren(String pid) {
 		List<Category> category=categoryDao.findByParent(pid);
 		return category;
 	}
@@ -71,6 +71,7 @@ public class CategoryServiceImpl implements ICategoryService {
 
 	@Override
 	public int findChildrenCountByParent(String pid) {
+		
 		return categoryDao.findChildrenCountByParent(pid);
 	}
 

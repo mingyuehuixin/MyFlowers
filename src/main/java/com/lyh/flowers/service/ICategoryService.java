@@ -8,7 +8,7 @@ public interface ICategoryService {
 
 	List<Category> findAll();
 	List<Category> findParents();
-	List<Category> findByParent(String pid);
+	List<Category> findChildren(String pid);
 	
 	void add(Category category);
 	Category load(String cid);

@@ -2,24 +2,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
     <title>订单详细</title>
     
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-	<link rel="stylesheet" type="text/css" href="<c:url value='/adminjsps/admin/css/order/desc.css'/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value='../../static/css/Aorderdesc.css'/>">
   </head>
   
 <body>
+ <input type="button" value="返回" onclick="history.go(-1)"/>
 	<div class="divOrder">
 		<span>订单号：${oder.oid }
 <c:choose>
@@ -50,20 +42,16 @@
 							<th class="tt" align="left">数量</th>
 							<th class="tt" align="left">小计</th>
 						</tr>
-
-
-
-
 <c:forEach items="${order.orderItemList }" var="orderItem">
 						<tr style="padding-top: 20px; padding-bottom: 20px;">
 							<td class="td" width="400px">
-								<div class="bookname">
-								  <img align="middle" width="70" src="<c:url value='/${orderItem.book.image_b }'/>"/>
-								  ${orderItem.book.bname }
+								<div class="flowername">
+								  <img align="middle" width="70" src="<c:url value='/${orderItem.image_b }'/>"/>
+								  ${orderItem.fname }
 								</div>
 							</td>
 							<td class="td" >
-								<span>&yen;${orderItem.book.currPrice }</span>
+								<span>&yen;${orderItem.currPrice }</span>
 							</td>
 							<td class="td">
 								<span>${orderItem.quantity }</span>
@@ -73,23 +61,22 @@
 							</td>			
 						</tr>
 </c:forEach>
-
-							
-							
-							
+				
 					</table>
 				</dd>
 			</dl>
 		</div>
 		<div class="divBtn">
 			<span class="spanTotal">合　　计：</span>
-			<span class="price_t">&yen;${order.total }</span><br/>
+			<span class="price_t">&yen;${order.total }</span>
+		<br/>
+		<br/>
 
-<c:if test="${order.status eq 2 and btn eq 'deliver' }">
-	<a id="deliver" href="<c:url value='/admin/AdminOrderServlet?method=deliver&oid=${order.oid }'/>">发　　货</a>
+<c:if test="${order.status eq 2 }">
+	<a id="deliver" href="<c:url value='../../orderM/deliver/${order.oid }'/>">发　　货</a>
 </c:if>
-<c:if test="${order.status eq 1 and btn eq 'cancel' }">
-	<a id="cancel" href="<c:url value='/admin/AdminOrderServlet?method=cancel&oid=${order.oid }'/>">取　　消</a>
+<c:if test="${order.status eq 1 }">
+	<a id="cancel" href="<c:url value='../../orderM/cancle/${order.oid }'/>">取　　消</a>
 </c:if>
 		</div>
 	</div>

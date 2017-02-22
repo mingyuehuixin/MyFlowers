@@ -4,12 +4,6 @@
 <html>
   <head>
     <title>管理员登录页面</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
 
 	<script type="text/javascript" src="<c:url value='../../static/js/jquery-1.5.1.js'/>"></script>
 	<script type="text/javascript">
@@ -28,6 +22,7 @@
   </head>
   
   <body>
+<div align="center">
 <h1>管理员登录页面</h1>
 <hr/>
   <p style="font-weight: 900; color: red">${msg }</p>
@@ -37,5 +32,6 @@
 	密　　　码：<input type="password" name="adminpwd" id="adminpwd"/><br/>
 	<input type="submit" value="进入后台"/>
 </form>
+</div>
   </body>
 </html>

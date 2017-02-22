@@ -122,8 +122,13 @@ public class OrderController {
 		order.setOrdertime(String.format("%tF %<tT", new Date()));//下单时间
 		order.setStatus(1);//设置状态，1表示未付款
 		order.setAddress(request.getParameter("address"));//设置收货地址
+		order.setName(request.getParameter("name"));
+		order.setPhone(request.getParameter("phone"));
+		
 		User owner = (User)request.getSession().getAttribute("sessionUser");
+		
 		order.setOwner(owner);//设置订单所有者
+		order.setUid(owner.getUid());
 		
 		BigDecimal total = new BigDecimal("0");
 		for(CartItem cartItem : cartItemList) {
@@ -291,7 +296,7 @@ public class OrderController {
 		Order order = orderService.load(oid);
 		model.addAttribute("order", order);
 		
-		System.out.println(order);
+//		System.out.println(order);
 		
 		String btn = request.getParameter("btn");//btn说明了用户点击哪个超链接来访问本方法的
 		model.addAttribute("btn", btn);

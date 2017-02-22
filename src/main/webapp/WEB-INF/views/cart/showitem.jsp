@@ -25,6 +25,13 @@
 	padding-left: 10px;
 	line-height: 32px;
 }
+#pna {
+	width: 200px;
+	height: 32px;
+	border: 1px solid #7f9db9;
+	padding-left: 10px;
+	line-height: 32px;
+	}
 </style>
 
 <script type="text/javascript">
@@ -45,7 +52,6 @@
 		<c:otherwise>
 			<form id="form1" action="<c:url value='../order/createOrder/${cartItemIds }'/>"
 				method="post">
-				
 				<table width="95%" align="center" cellpadding="0" cellspacing="0">
 					<tr bgcolor="#efeae5">
 						<td width="400px" colspan="5"><span style="font-weight: 900;">生成订单</span></td>
@@ -82,11 +88,20 @@
 					</tr>
 					<tr>
 						<td colspan="5" bgcolor="#efeae5"><span
-							style="font-weight: 900">收货地址</span></td>
+							style="font-weight: 900">请填写收货人信息</span></td>
 					</tr>
 					<tr>
-						<td colspan="6"><input id="addr" type="text" name="address"
-							value="贵州省  贵阳市  花溪区  贵州大学 （北校区）" /></td>
+					    <td colspan="2">收货人姓名：
+					    	<input id="pna" type="text" name="name" value="" />
+					    </td>
+						<td colspan="3">联系电话：
+							<input id="pna" type="text" name="phone" value="" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="6">收货地址：
+							<input id="addr" type="text" name="address" value="" />
+						</td>
 					</tr>
 					<tr>
 						<td style="border-top-width: 4px;" colspan="5" align="right">

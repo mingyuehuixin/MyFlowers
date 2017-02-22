@@ -4,7 +4,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>图书分类</title>
+    <title>花束分类</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -17,9 +17,9 @@
 <script type="text/javascript" src="<c:url value='../static/js/jquery-1.5.1.js'/>"></script>
 
  <style type="text/css">
-	.pic { display: block; position: relative; margin-bottom: 3px; width: 200px; height: 200px; }
+	.pic { display: block; position: relative; margin-bottom: 3px; width: 100px; height: 150px; }
 	.inner {overflow:hidden;text-overflow:ellipsis;word-break:keep-all;white-space:nowrap; border: solid 3px #fff; padding: 16px 16px 0; position: absolute; }
-	li {float: left; width: 240px; height: 319px; line-height: 18px; position: relative; border-bottom: solid 1px #e5e5e5; }
+	li {float: left; width: 140px; height: 319px; line-height: 18px; position: relative; border-bottom: solid 1px #e5e5e5; }
 	li div {margin-bottom:1px;margin-left: 10px;}
 	
 	body,ul, li, p,img, div { margin: 0; padding: 0; list-style-type: none; font-size: 12px;}
@@ -53,26 +53,15 @@
 <c:forEach items="${pb.beanList }" var="flower">
  <li>
   <div class="inner">
-    <a class="pic" href="<c:url value='/admin/AdminBookServlet?method=load&bid=${flower.fid }'/>">
-    <img src="<c:url value='/${flower.image_b }'/>" border="0"/></a>
+    <a class="pic" href="<c:url value='../load/${flower.fid }'/>">
+       <img src="<c:url value='/${flower.image_b }'/>" border="1"/>
+    </a>
     <p class="price" >
 		<span class="price_n">&yen;${flower.currPrice }</span>
 		<span class="price_r">&yen;${flower.price }</span>
 		(<span class="price_s">${flower.discount }折</span>)
 	</p>
-	<c:url value="/admin/AdminBookServlet" var="authorUrl">
-		<c:param name="method" value="findByAuthor"/>
-		<c:param name="material" value="${flower.material }"/>
-	</c:url>
-	<c:url value="/admin/AdminBookServlet" var="pressUrl">
-		<c:param name="method" value="findByPress"/>
-		<c:param name="flowersaying" value="${flower.flowersaying }"/>
-	</c:url>
-	<p><a id="bookname" title="${flower.fname }" href="<c:url value='/admin/AdminBookServlet?method=load&bid=${flower.fid }'/>">${flower.fname }</a></p>
-	<p><a href="${authorUrl }" name='P_zz' title='${flower.flowercolor }'>${flower.flowercolor }</a></p>
-	<p class="publishing">
-		<span>对象：</span><a href="${pressUrl }">${flower.target }</a>
-	</p>
+	<p>花束名：<a id="flowername" title="${flower.fname }" href="<c:url value='../../flowerM/load/${flower.fid }'/>">${flower.fname }</a></p>
   </div>
  </li>
 </c:forEach>

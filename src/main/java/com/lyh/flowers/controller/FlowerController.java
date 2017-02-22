@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 
+
 import com.lyh.flowers.pojo.Category;
 import com.lyh.flowers.pojo.Flower;
 import com.lyh.flowers.pojo.PageBean;
@@ -84,10 +85,18 @@ public class FlowerController {
 		return "flower/desc";
 	}
 	
-//	@RequestMapping(value="/flowerDesc",method={RequestMethod.GET})
-//	public String flowerDesc(HttpServletRequest request,Model model){
-//		return "flower/desc";
-//	}
+	@RequestMapping(value="/seach")
+	public String seach(HttpServletRequest request,Model model){
+		int pc = getPc(request);
+		String url = getUrl(request);
+		String keyword = request.getParameter("schKeyword");
+		System.out.println(keyword);
+		PageBean<Flower> pb=flowerService.seachByKeyWord(keyword, pc);
+		pb.setUrl(url);
+		model.addAttribute("pb", pb);
+		
+		return "flower/list";
+	}
 
 	
 }

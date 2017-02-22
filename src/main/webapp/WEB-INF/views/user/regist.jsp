@@ -21,6 +21,7 @@
   
   <body>
 <div id="divMain">
+<div><img src="<c:url value='../static/image/logo.jpg'/>" /></div>
   <div id="divTitle">
     <span id="spanTitle">新用户注册</span>
   </div>

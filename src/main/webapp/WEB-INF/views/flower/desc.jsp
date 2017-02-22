@@ -1,93 +1,154 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
-  <head>
-    <title>鲜花详情 </title>
-  <meta name="Generator" content="EditPlus">
-  <meta name="Author" content="">
-  <meta name="Keywords" content="">
-  <meta name="Description" content="">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/flower/desc.css">
-  <script type="text/javascript" src="<c:url value='../../static/js/jquery-1.5.1.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='../../static/js/flower/desc.js'/>"></script>
- </head>
-
- <body>
-  
-<div id="MainPanel" class="fr">
-		<br><br><br>
-			<div id="GoodsAlbum" class="frameMarginRight fl">
-			<div class="GoodsImage" style="border:0;"><img src="<c:url value='/${flower.image_w }'/>"></div>
+<head>
+<title>鲜花详情</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/flower/desc.css">
+<script type="text/javascript" src="<c:url value='../../static/js/jquery-1.5.1.js'/>"></script>
+<script type="text/javascript" src="<c:url value='../../static/js/flower/desc.js'/>"></script>
+</head>
+<body>
+	<div id="MainPanel" class="fr">
+		<div id="GoodsAlbum" class="frameMarginRight fl">
+			<div class="GoodsImage" style="border: 0;">
+				<img src="<c:url value='/${flower.image_w }'/>">
+			</div>
 			<div class="AlbumList"></div>
 		</div>
 		<div id="GoodsHead">
 			<h2 class="TextCoffee">${flower.fname }</h2>
 			<dl>
 				<dt>编号：</dt>
-					<dd>${flower.fid }</dd><dt>类别：</dt>
-					<dd>${flower.type }</dd><dt>用途：</dt><dd>${flower.makeuse }</dd><dt>花材：</dt><dd>${flower.material }</dd><dt>枝数：</dt><dd>${flower.branchnumber }</dd><dt>颜色：</dt><dd>${flower.flowercolor }</dd><dt>材料：</dt><dd>${flower.packing }</dd><dt>花语：</dt><dd>${flower.flowersaying }</dd><dt>附送：</dt><dd>免费附送精美贺卡，代写您的祝福。 </dd>			</dl>
+				<dd>${flower.fid }</dd>
+				<dt>类别：</dt>
+				<dd>${flower.type }</dd>
+				<dt>用途：</dt>
+				<dd>${flower.makeuse }</dd>
+				<dt>花材：</dt>
+				<dd>${flower.material }</dd>
+				<dt>枝数：</dt>
+				<dd>${flower.branchnumber }</dd>
+				<dt>颜色：</dt>
+				<dd>${flower.flowercolor }</dd>
+				<dt>包装：</dt>
+				<dd>${flower.packing }</dd>
+				<dt>花语：</dt>
+				<dd>${flower.flowersaying }</dd>
+				<dt>附送：</dt>
+				<dd>免费附送精美贺卡，代写您的祝福。</dd>
+			</dl>
 			<div class="PanelBuy">
 				<p>
-					<strong class="TextRed">会员价:&yen;${flower.currPrice }</strong>
-					<span class="InvText frameMarginLeft">市场价:&yen;${flower.price }</span>
+					<strong class="TextRed">会员价:&yen;${flower.currPrice }</strong> <span
+						class="InvText frameMarginLeft">市场价:&yen;${flower.price }</span>
 				</p>
 				<div class="frameMarginTop">
-					<a class="BtnBuy buyIt" href="<c:url value='/cart/addCart/${flower.fid }'/>"></a>
-				
-					<a class="BtnQuickBuy buyItQ" href="<c:url value='/cart/quickBuy/${flower.fid }'/>"></a>
+					<a class="BtnBuy buyIt"
+						href="<c:url value='/cart/addCart/${flower.fid }'/>"></a>
 				</div>
 			</div>
-			<div id="ckepop" style="margin-top:20px;">
-				<span class="jiathis_txt" style="font-family:SimSun;">分享到：</span>
-				<a class="jiathis_button_copy" href="#">微信</a>
-				<a class="jiathis_button_tsina">QQ</a>
-				<a class="jiathis_button_tqq"></a>
-				<a class="jiathis_button_t163"></a>
-				<a class="jiathis_button_tsohu"></a>
-				<a class="jiathis_button_renren"></a>
-				<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+			<div id="ckepop" style="margin-top: 20px;">
+				<span class="jiathis_txt" style="font-family: SimSun;">分享到：</span> <a
+					class="jiathis_button_copy" href="#">微信</a> 
+					<a class="jiathis_button_tsina">QQ</a>
 			</div>
 		</div>
 		<div class="cf"></div>
-		<h1 class="FullBar fbRed"><span class="FullBarText">商品详情</span></h1>
+		<h1 class="FullBar fbRed">
+			<span class="FullBarText">商品详情</span>
+		</h1>
 		<div class="DispalyContentBox frameMarginBot">
 			<p>
-	<span style="font-family: lucida sans unicode, lucida grande, sans-serif"><span style="color: #ff0000"><span style="font-size: 18px">商品名称：${flower.fname }</span></span></span></p>
-<p>
-	<span style="font-family: lucida sans unicode, lucida grande, sans-serif"><span style="color: #ff0000"><span style="font-size: 18px">花材：${flower.material }<span>A</span>级红玫瑰<span>${flower.branchnumber }</span>朵<span>,</span>${flower.packing }<span style="font-weight: normal"></span></span></span></span></p>
-<p>
-	&nbsp;</p>
-<p>
-	<span style="font-family: lucida sans unicode, lucida grande, sans-serif"><span style="color: #ff0000"><span style="font-size: 18px"><span style="font-weight: normal"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="font-size: 16px"><span style="color: #000000"><span><span><span id="ErrorMsg"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="font-size: 16px"><span style="color: #000000"><span><span><span id="ErrorMsg"><font size="4"><span style="font-size: 24px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><font size="4"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="font-size: 16px"><span style="color: #000000"><span><span><span id="ErrorMsg"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="font-size: 16px"><span style="color: #000000"><span><span><span id="ErrorMsg">&nbsp;</span></span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></font></span></strong></span></span></font></span></span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span></p>
-<p>
-	<span style="font-family: lucida sans unicode, lucida grande, sans-serif"><span style="color: #ff0000"><span style="font-size: 18px"><span style="font-weight: normal"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="font-size: 16px"><span style="color: #000000"><span><span><span id="ErrorMsg"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="font-size: 16px"><span style="color: #000000"><span><span><span id="ErrorMsg"><font size="4"><span style="font-size: 24px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><font size="4"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="font-size: 16px"><span style="color: #000000"><span><span><span><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="font-size: 16px"><span style="color: #000000"><span><span><span>订购电话：021-66407126&nbsp; QQ:568037318</span></span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></font></span></strong></span></span></font></span></span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span></p>
-<p>
-	<span style="font-family: lucida sans unicode, lucida grande, sans-serif"><span style="color: #ff0000"><span style="font-size: 18px"><span style="font-weight: normal"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="font-size: 16px"><span style="color: #000000"><span><span><span id="ErrorMsg"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="font-size: 16px"><span style="color: #000000"><span><span><span id="ErrorMsg"><font size="4"><span style="font-size: 24px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><font size="4"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="font-size: 16px"><span style="color: #000000"><span><span><span id="ErrorMsg"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="font-size: 16px"><span style="color: #000000"><span><span><span>微信号:zhzhk10</span></span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px">&nbsp;</span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></font></span></strong></span></span></font></span></span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span></p>
-<p>
-	<span style="font-family: lucida sans unicode, lucida grande, sans-serif"><span style="color: #ff0000"><span style="font-size: 18px"><span style="font-weight: normal"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="font-size: 16px"><span><span><span style="color: #000000">&nbsp;</span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span></p>
-<p>
-	<span style="font-family: lucida sans unicode, lucida grande, sans-serif"><span style="color: #ff0000"><span style="font-size: 18px"><span style="font-weight: normal"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="font-size: 16px"><span><span><span style="color: #000000">友情提示：<br>
-	假如由于地区域季节的限制,需要更换花材，我们将会在第一时间和您联系，假如在此期间内得不到您的认可，我们的花艺师将采用价值相等，花意相同的花村代替，敬请谅解。 </span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span></p>
-<p>
-	<span style="font-family: lucida sans unicode, lucida grande, sans-serif"><span style="color: #ff0000"><span style="font-size: 18px"><span style="font-weight: normal"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px">&nbsp;</span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span></p>
-<ul>
-	<li>
-		<span style="font-family: lucida sans unicode, lucida grande, sans-serif"><span style="color: #ff0000"><span style="font-size: 18px"><span style="font-weight: normal"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span><span style="font-size: 18px"><span style="font-size: 16px"><span style="color: #000000">配送提示：<br>
-		非节日期间，可指定时间送到最快时间2小时到达，节日期间，可保证当日送达，急需者可另议。送达市郊或乡村，根据路程远近，收取相应的快递费。 </span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span></li>
-	<li>
-		<span style="font-family: lucida sans unicode, lucida grande, sans-serif"><span style="color: #ff0000"><span style="font-size: 18px"><span style="font-weight: normal"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span><span style="font-size: 18px"><span style="font-size: 16px"><span style="color: #000000">服务时间：<br>
-		365天，节假日不休息，24小时服务。 </span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span></li>
-	<li>
-		<span style="font-family: lucida sans unicode, lucida grande, sans-serif"><span style="color: #ff0000"><span style="font-size: 18px"><span style="font-weight: normal"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><strong><span style="color: #ff0000"><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span style="color: #ff0000"><strong><span style="font-size: 18px"><span><span style="font-size: 18px"><span style="font-size: 16px"><span style="color: #000000">售后服务：<br>
-		因我们服务质量问题，引起您的不满，我们定会对您给予相应的理赔。欢迎您给予我宝贵的建议，您的建议就是我们成长的步伐。一经采纳者，我们将给予相应的回报，谢谢您的支持和厚爱！</span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span></li>
-</ul>
-<p>
-	<span style="font-family: lucida sans unicode, lucida grande, sans-serif"><span style="color: #ff0000"><span style="font-size: 18px"><span style="font-weight: normal">&nbsp;</span></span></span></span></p>
-<p>
-	&nbsp;</p>
+				<span
+					style="font-family: lucida sans unicode, lucida grande, sans-serif"><span
+					style="color: #ff0000"><span style="font-size: 18px">商品名称：${flower.fname }</span></span></span>
+			</p>
+			<p>
+				<span
+					style="font-family: lucida sans unicode, lucida grande, sans-serif"><span
+					style="color: #ff0000">
+				<span style="font-size: 18px">花材：${flower.material }<span>A</span>级红玫瑰<span>${flower.branchnumber }</span>朵<span>,</span>${flower.packing }<span
+							style="font-weight: normal"></span></span></span></span>
+			</p>
+			<p>&nbsp;</p>
+			
+			<p>
+				<span style="font-family: lucida sans unicode, lucida grande, sans-serif">
+				<span style="color: #ff0000"> <span style="font-size: 18px">
+				<span style="font-weight: normal"> <span style="color: #ff0000">
+				<strong><span style="font-size: 18px"><span style="color: #ff0000">
+				<strong><span style="font-size: 18px"><span style="color: #ff0000">
+				<strong><span style="font-size: 18px">
+				<strong><span style="color: #ff0000"><span style="font-size: 18px">
+				<span style="color: #ff0000">
+				<strong><span style="font-size: 18px"><span style="color: #ff0000">
+				<strong><span style="font-size: 18px"><span style="color: #ff0000">
+				<strong><span style="font-size: 18px"><span style="color: #ff0000">
+				<strong><span style="font-size: 18px"><span style="color: #ff0000">
+				<strong><span style="font-size: 18px"><span><span style="font-size: 18px">
+				<span style="font-size: 16px"><span style="color: #000000">订购电话：<br>
+			     100861199 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				 QQ:100861199
+				 </span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span>
+			</p>
+			<br>
+		<ul>
+			<li>
+				    <span style="font-family: lucida sans unicode, lucida grande, sans-serif">
+					<span style="color: #ff0000"> <span style="font-size: 18px">
+					<span style="font-weight: normal"> <span style="color: #ff0000">
+					<strong><span style="font-size: 18px"><span style="color: #ff0000">
+					<strong><span style="font-size: 18px"><span style="color: #ff0000">
+					<strong><span style="font-size: 18px">
+					<strong><span style="color: #ff0000"><span style="font-size: 18px">
+					<span style="color: #ff0000">
+					<strong><span style="font-size: 18px"><span style="color: #ff0000">
+					<strong><span style="font-size: 18px"><span style="color: #ff0000">
+					<strong><span style="font-size: 18px"><span style="color: #ff0000">
+					<strong><span style="font-size: 18px"><span style="color: #ff0000">
+					<strong><span style="font-size: 18px"><span><span style="font-size: 18px">
+					<span style="font-size: 16px"><span style="color: #000000">友情提示：<br>
+				      假如由于地区域季节的限制,需要更换花材，我们将会在第一时间和您联系，假如在此期间内得不到您的认可，
+					  我们的花艺师将采用价值相等，花意相同的花村代替，敬请谅解。</span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span>
+				</li>  <br>
+				<li>
+			    <span style="font-family: lucida sans unicode, lucida grande, sans-serif">
+				<span style="color: #ff0000"> <span style="font-size: 18px">
+				<span style="font-weight: normal"> <span style="color: #ff0000">
+				<strong><span style="font-size: 18px"><span style="color: #ff0000">
+				<strong><span style="font-size: 18px"><span style="color: #ff0000">
+				<strong><span style="font-size: 18px">
+				<strong><span style="color: #ff0000"><span style="font-size: 18px">
+				<span style="color: #ff0000">
+				<strong><span style="font-size: 18px"><span style="color: #ff0000">
+				<strong><span style="font-size: 18px"><span style="color: #ff0000">
+				<strong><span style="font-size: 18px"><span style="color: #ff0000">
+				<strong><span style="font-size: 18px"><span style="color: #ff0000">
+				<strong><span style="font-size: 18px"><span><span style="font-size: 18px">
+				<span style="font-size: 16px"><span style="color: #000000">配送提示：<br>
+			          非节日期间，可指定时间送到最快时间2小时到达，节日期间，可保证当日送达，急需者可另议。送达市郊或乡村，根据路程远近，收取相应的快递费。	</span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span>
+			  </li> <br>
+			  <li>
+				    <span style="font-family: lucida sans unicode, lucida grande, sans-serif">
+					<span style="color: #ff0000"> <span style="font-size: 18px">
+					<span style="font-weight: normal"> <span style="color: #ff0000">
+					<strong><span style="font-size: 18px"><span style="color: #ff0000">
+					<strong><span style="font-size: 18px"><span style="color: #ff0000">
+					<strong><span style="font-size: 18px">
+					<strong><span style="color: #ff0000"><span style="font-size: 18px">
+					<span style="color: #ff0000">
+					<strong><span style="font-size: 18px"><span style="color: #ff0000">
+					<strong><span style="font-size: 18px"><span style="color: #ff0000">
+					<strong><span style="font-size: 18px"><span style="color: #ff0000">
+					<strong><span style="font-size: 18px"><span style="color: #ff0000">
+					<strong><span style="font-size: 18px"><span><span style="font-size: 18px">
+					<span style="font-size: 16px"><span style="color: #000000">售后服务：<br>
+				      因我们服务质量问题，引起您的不满，我们定会对您给予相应的理赔。欢迎您给予我宝贵的建议，您的建议就是我们成长的步伐。
+					  一经采纳者，我们将给予相应的回报，谢谢您的支持和厚爱！</span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span>
+				</li>
+			</ul>		
 		</div>
-			</div>
-
- </body>
+	</div>
+</body>
 </html>

@@ -6,11 +6,13 @@
     <result column="ordertime" property="ordertime" jdbcType="CHAR" />
     <result column="total" property="total" jdbcType="DECIMAL" />
     <result column="status" property="status" jdbcType="INTEGER" />
-   <result column="address" property="address" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
+    <result column="address" property="address" jdbcType="CHAR" />
     <result column="uid" property="uid" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    oid, ordertime, total, status, address, uid
+    oid, ordertime, total, status,name,phone, address, uid
   </sql>
  
   <select id="findStatus" resultType="java.lang.Integer">
@@ -55,14 +57,16 @@
    <select id="findByUser" resultMap="BaseResultMap">
     select * 
     from t_order
-     where uid=#{0}
+     where uid=#{0} 
+     order by CAST(ordertime AS DATETIME) DESC
      limit #{1},#{2}
   </select>
   
   
   <insert id="add" parameterType="com.lyh.flowers.pojo.Order" >
-   insert into t_order(oid, ordertime, total, status, address, uid)
-             values(#{0},#{1},#{2},#{3},#{4},#{5})
+   insert into t_order(oid, ordertime, total, status,name,phone, address, uid)
+             values(#{oid,jdbcType=CHAR},#{ordertime,jdbcType=CHAR},#{total,jdbcType=DECIMAL},#{status,jdbcType=INTEGER},
+             		#{name,jdbcType=VARCHAR},#{phone,jdbcType=CHAR},#{address,jdbcType=VARCHAR},#{uid,jdbcType=CHAR})
   </insert>
   
   <update id="updateStatus" >

@@ -20,14 +20,13 @@ public class FlowerServiceImpl implements IFlowerService {
 	
 	@Override
 	public void delete(String fid) {
-		// TODO Auto-generated method stub
-		
+		flowerDao.delete(fid);
 	}
 
 	@Override
 	public void edit(Flower flower) {
-		// TODO Auto-generated method stub
 		
+		flowerDao.edit(flower);
 	}
 
 	@Override
@@ -102,7 +101,7 @@ public class FlowerServiceImpl implements IFlowerService {
 		case "7":type=cname;
 			break;
 		}
-		int ps = 6;//每页记录数
+		int ps = 12;//每页记录数
 		int count=findFlowerCountByCategory(cid);//鲜花总记录数
 		
 		List<Flower> flowerList;
@@ -111,6 +110,31 @@ public class FlowerServiceImpl implements IFlowerService {
 		}else{
 			flowerList=flowerDao.findByPrice(minprice, maxprice,  (pc-1)*ps, ps);
 		}
+		PageBean<Flower> pb = new PageBean<Flower>();
+		
+		pb.setBeanList(flowerList);
+		pb.setPc(pc);
+		pb.setPs(ps);
+		pb.setTr(count);
+		
+		return pb;
+	}
+
+	@Override
+	public void add(Flower flower) {
+		
+		flowerDao.add(flower.getFid(), flower.getFname(), flower.getMaterial(), flower.getPrice(),
+				flower.getCurrPrice(), flower.getDiscount(), flower.getFlowersaying(), flower.getPacking(),
+				flower.getTarget(), flower.getBranchnumber(), flower.getFlowercolor(), flower.getType(), 
+				flower.getMakeuse(), flower.getCid(), flower.getImage_w(), flower.getImage_b());
+	}
+
+	@Override
+	public PageBean<Flower> seachByKeyWord(String keyword, int pc) {
+		int ps = 12;//每页记录数
+		int count=flowerDao.findCount(keyword, keyword,keyword);//鲜花总记录数
+		
+		List<Flower> flowerList= flowerDao.findBySeachKey(keyword, keyword,keyword, (pc-1)*ps, ps);
 		PageBean<Flower> pb = new PageBean<Flower>();
 		
 		pb.setBeanList(flowerList);

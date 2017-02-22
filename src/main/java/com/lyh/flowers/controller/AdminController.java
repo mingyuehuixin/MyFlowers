@@ -60,7 +60,13 @@ public class AdminController {
 			return "admin/login";
 		}
 		httpSession.setAttribute("admin", admin);
-//		loginname = URLEncoder.encode(loginname, "utf-8");
 		return "admin/main";
 	}
+	@RequestMapping("/loginout")
+	public String quit(HttpServletRequest request,Model model){
+		request.getSession().invalidate();
+//		return "redirect:/index.jsp";
+		return "admin/login";
+	}
+	
 }

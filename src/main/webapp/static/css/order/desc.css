@@ -34,16 +34,15 @@ a:hover {
 }
 
 .divOrder {
-	width: 90%;
+	width: 100%;
 	font-weight: 900;
 	font-size: 15px;
-	padding: 20px;
-	margin-left: 100px;
+	
 }
 
 .divContent {
 	width: 750px;
-	margin-left: 100px;
+	
 	border: 2px solid #e9c9b2;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -70,7 +69,7 @@ dt {
 	width: 99.8%;
 }
 
-td .bookname {
+td .flowername {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	word-break: keep-all;

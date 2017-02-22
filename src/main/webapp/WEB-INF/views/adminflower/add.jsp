@@ -1,10 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 
 <html>
   <head>
-    <title>My JSP 'bookdesc.jsp' starting page</title>
+    <title>添加新花束</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -13,16 +14,45 @@
 	<meta http-equiv="description" content="This is my page">
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
 	
-<link rel="stylesheet" type="text/css" href="<c:url value='/adminjsps/admin/css/book/add.css'/>">
-<link rel="stylesheet" type="text/css" href="<c:url value='/jquery/jquery.datepick.css'/>">
-<script type="text/javascript" src="<c:url value='/jquery/jquery-1.5.1.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/jquery/jquery.datepick.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/jquery/jquery.datepick-zh-CN.js'/>"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value='../static/js/jquery.datepick.css'/>">
+<script type="text/javascript" src="<c:url value='../static/js/jquery-1.5.1.js'/>"></script>
+<script type="text/javascript" src="<c:url value='../static/js/jquery.datepick.js'/>"></script>
+<script type="text/javascript" src="<c:url value='../static/js/jquery.datepick-zh-CN.js'/>"></script>
+<style type="text/css">
+body {
+	font-size: 10pt;
+	color: #404040;
+	font-family: SimSun;}
+table {
+	font-size: 10pt;
+	margin-top: 15px;
+	margin-left: 50px;
+	width: 680px;}
+td {	height: 25px;}
+.tp {
+	border: 1px solid #dcdcdc;
+	float: left;}
+ul {	list-style: none;}
+li {	margin: 10px;}
+.btn {
+	border: 0;
+	width: 142px;
+	height: 33px;
+	margin-top: 10px;
+	font-size: 18px;
+	font-weight: 900;
+	text-align: left;
+	padding-top: 1px;
+	padding-left: 32px;
+	color: #fff;
+	font-family: 黑体;}
+.btn1 {	background: url(../static/image/hong_2_btn.jpg) left top		no-repeat;}
+.btn2 {	background: url(../static/image/hong_1_btn.jpg) left top		no-repeat;}
+
+</style>
+
 <script type="text/javascript">
 $(function () {
-	$("#publishtime").datepick({dateFormat:"yy-mm-dd"});
-	$("#printtime").datepick({dateFormat:"yy-mm-dd"});
-	
 	$("#btn").addClass("btn1");
 	$("#btn").hover(
 		function() {
@@ -36,19 +66,22 @@ $(function () {
 	);
 	
 	$("#btn").click(function() {
-		var bname = $("#bname").val();
+		var fname = $("#fname").val();
 		var currPrice = $("#currPrice").val();
 		var price = $("#price").val();
 		var discount = $("#discount").val();
-		var author = $("#author").val();
-		var press = $("#press").val();
-		var pid = $("#pid").val();
-		var cid = $("#cid").val();
+		var packing = $("#packing").val();
+		var flowersaying = $("#flowersaying").val();
+		var material = $("#material").val();
+		var flowercolor = $("#flowercolor").val();
 		var image_w = $("#image_w").val();
 		var image_b = $("#image_b").val();
+		var branchnumber = $("#branchnumber").val();
+		var type = $("#type").val();
+		var makeuse = $("#makeuse").val();
 		
-		if(!bname || !currPrice || !price || !discount || !author || !press || !pid || !cid || !image_w || !image_b) {
-			alert("图名、当前价、定价、折扣、作者、出版社、1级分类、2级分类、大图、小图都不能为空！");
+		if(!fname || !currPrice || !price || !discount || !packing|| !branchnumber|| !type|| !makeuse|| !flowersaying || !material || !flowercolor || !image_w || !image_b) {
+			alert("花束名、当前价、定价、折扣、包装、枝数、类型、用途、花语、材料、颜色、大图、小图都不能为空！");
 			return false;
 		}
 		
@@ -60,106 +93,104 @@ $(function () {
 	});
 });
 
-function loadChildren() {
-	/*
-	1. 获取pid
-	2. 发出异步请求，功能之：
-	  3. 得到一个数组
-	  4. 获取cid元素(<select>)，把内部的<option>全部删除
-	  5. 添加一个头（<option>请选择2级分类</option>）
-	  6. 循环数组，把数组中每个对象转换成一个<option>添加到cid中
-	*/
-	// 1. 获取pid
-	var pid = $("#pid").val();
-	// 2. 发送异步请求
-	$.ajax({
-		async:true,
-		cache:false,
-		url:"/goods/admin/AdminBookServlet",
-		data:{method:"ajaxFindChildren", pid:pid},
-		type:"POST",
-		dataType:"json",
-		success:function(arr) {
-			// 3. 得到cid，删除它的内容
-			$("#cid").empty();//删除元素的子元素
-			$("#cid").append($("<option>====请选择2级分类====</option>"));//4.添加头
-			// 5. 循环遍历数组，把每个对象转换成<option>添加到cid中
-			for(var i = 0; i < arr.length; i++) {
-				var option = $("<option>").val(arr[i].cid).text(arr[i].cname);
-				$("#cid").append(option);
-			}
-		}
-	});
-}
-
 </script>
   </head>
   
   <body>
+  <h3 align="left">添加新花束</h3>
+  <br>
   <div>
    <p style="font-weight: 900; color: red;">${msg }</p>
-   <form action="<c:url value='/admin/AdminAddBookServlet'/>" enctype="multipart/form-data" method="post" id="form">
+   <form:form method="POST" modelAttribute="flower" enctype="multipart/form-data" id="form">
+   <form:input type="hidden" path="fid" id="fid"/>
     <div>
 	    <ul>
-	    	<li>书名：　<input id="bname" type="text" name="bname" value="Spring实战(第3版)（In Action系列中最畅销的Spring图书，近十万读者学习Spring的共同选择）" style="width:500px;"/></li>
-	    	<li>大图：　<input id="image_w" type="file" name="image_w"/></li>
-	    	<li>小图：　<input id="image_b" type="file" name="image_b"/></li>
-	    	<li>当前价：<input id="currPrice" type="text" name="currPrice" value="40.7" style="width:50px;"/></li>
-	    	<li>定价：　<input id="price" type="text" name="price" value="59.0" style="width:50px;"/>
-	    	折扣：<input id="discount" type="text" name="discount" value="6.9" style="width:30px;"/>折</li>
+	    	<li>花束名称：　<input id="fname" type="text" name="fname" value="${flower.fname }" style="width:390px;"/></li>
+	    	<li>大图：　<input id="image_w" type="file" name="image_w" value="${flower.image_w }"/></li>
+	    	<li>小图：　<input id="image_b" type="file" name="image_b" value="${flower.image_b }"/></li>
+	    	<li>会员价：<input id="currPrice" type="text" name="currPrice" value="${flower.currPrice }" style="width:50px;"/></li>
+	    	<li>市场价：　<input id="price" type="text" name="price" value="${flower.price }" style="width:50px;"/>
+	    	折扣：<input id="discount" type="text" name="discount" value="${flower.discount }" style="width:30px;"/>折</li>
 	    </ul>
+	    <br>
 		<hr style="margin-left: 50px; height: 1px; color: #dcdcdc"/>
+		<br>
 		<table>
 			<tr>
 				<td colspan="3">
-					作者：　　<input type="text" id="author" name="author" value="Craig Walls" style="width:150px;"/>
+					包装：<input type="text" id="packing" name="packing" value="${flower.packing }" style="width:500px;"/>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="3">
-					出版社：　<input type="text" name="press" id="press" value="人民邮电出版社" style="width:200px;"/>
+					花语：<input type="text" name="flowersaying" id="flowersaying" value="${flower.flowersaying }" style="width:500px;"/>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="3">出版时间：<input type="text" id="publishtime" name="publishtime" value="2013-6-1" style="width:100px;"/></td>
-			</tr>
-			<tr>
-				<td>版次：　　<input type="text" name="edition" id="edition" value="1" style="width:40px;"/></td>
-				<td>页数：　　<input type="text" name="pageNum" id="pageNum" value="374" style="width:50px;"/></td>
-				<td>字数：　　<input type="text" name="wordNum" id="wordNum" value="48700" style="width:80px;"/></td>
-			</tr>
-			<tr>
-				<td width="250">印刷时间：<input type="text" name="printtime" id="printtime" value="2013-6-1" style="width:100px;"/></td>
-				<td width="250">开本：　　<input type="text" name="booksize" id="booksize" value="16" style="width:30px;"/></td>
-				<td>纸张：　　<input type="text" name="paper" id="paper" value="胶版纸" style="width:80px;"/></td>
-			</tr>
-			<tr>
-				<td>
-					一级分类：<select name="pid" id="pid" onchange="loadChildren()">
-						<option value="">====请选择1级分类====</option>
-<c:forEach items="${parents }" var="parent">
-			    		<option value="${parent.cid }">${parent.cname }</option>
-</c:forEach>
-
+				<td>材料：
+					<select name="material" id="material">
+						<option value="">===请选择花束材料===</option>
+					<c:forEach items="${materials }" var="material">
+			    		<option value="${material.cname }">${material.cname }</option>
+			    	</c:forEach>
 					</select>
 				</td>
-				<td>
-					二级分类：<select name="cid" id="cid">
-						<option value="">====请选择2级分类====</option>
+				<td>枝数：
+					<select name="branchnumber" id="branchnumber">
+						<option value="">===请选择花束枝数===</option>
+					<c:forEach items="${branchnumbers }" var="branchnumber">
+			    		<option value="${branchnumber.cname }">${branchnumber.cname }</option>
+			    	</c:forEach>
 					</select>
 				</td>
-				<td></td>
 			</tr>
 			<tr>
+				<td>颜色：
+					<select name="flowercolor" id="flowercolor">
+						<option value="">===请选择花束颜色===</option>
+					<c:forEach items="${colors }" var="color">
+			    		<option value="${color.cname }">${color.cname }</option>
+			    	</c:forEach>
+					</select>
+				</td>
+				<td>对象：
+					<select name="target" id="target">
+						<option value="">===请选择花束对象===</option>
+					<c:forEach items="${targets }" var="target">
+			    		<option value="${target.cname }">${target.cname }</option>
+			    	</c:forEach>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>类别：
+					<select name="type" id="type">
+						<option value="">===请选择花束类别===</option>
+					<c:forEach items="${types }" var="type">
+			    		<option value="${type.cname }">${type.cname }</option>
+			    	</c:forEach>
+					</select>
+				</td>
+				<td>用途：
+					<select name="makeuse" id="makeuse">
+						<option value="${flower.makeuse }">===请选择花束用途===</option>
+					<c:forEach items="${makeuses }" var="makeuse">
+			    		<option value="${makeuse.cname }">${makeuse.cname }</option>
+			    	</c:forEach>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
 				<td>
-					<input type="button" id="btn" class="btn" value="新书上架">
+					<input type="submit" id="btn" class="btn" value="新花上架">
 				</td>
 				<td></td>
 				<td></td>
 			</tr>
 		</table>
 	</div>
-   </form>
+   </form:form>
   </div>
 
   </body>

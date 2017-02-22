@@ -8,6 +8,8 @@ public class Order {
 	private double total;//总计
 	private String uid;
 	private int status;//订单状态：1未付款, 2已付款但未发货, 3已发货未确认收货, 4确认收货了交易成功, 5已取消(只有未付款才能取消)
+	private String name;//收货人姓名
+	private String phone;//收货电话
 	private String address;//收货地址
 	private User owner;//订单的所有者
 	
@@ -15,6 +17,22 @@ public class Order {
 
 	
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	public String getUid() {
 		return uid;
 	}
@@ -78,14 +96,4 @@ public class Order {
 	public void setOrderItemList(List<OrderItem> orderItemList) {
 		this.orderItemList = orderItemList;
 	}
-
-	@Override
-	public String toString() {
-		return "Order [oid=" + oid + ", ordertime=" + ordertime + ", total="
-				+ total + ", uid=" + uid + ", status=" + status + ", address="
-				+ address + ", owner=" + owner + ", orderItemList="
-				+ orderItemList + "]";
-	}
-	
-	
 }

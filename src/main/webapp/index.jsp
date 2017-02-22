@@ -5,31 +5,24 @@
 <html>
   <head>   
     <title>main</title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
+	
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
 	<style type="text/css">
 		*{font-size:10pt;}
 		body{text-align:center;
-	/*	background-image: url("./static/image/templatemo_main.png");*/
+		background-image: url("./static/image/bg1.gif");
 		}
-		.table{width:1100px;height:150%;border:1px solid #15B69A;border-collapse: collapse;}
-		.table td{border:1px solid #15B69A;}
-		.trTop {background: #15B69A;}
-		.tdTop {text-align: center; height: 100px;}
-		.tdLeft{width: 190px;padding:5px;}
-		.tdSearch{height: 45px; border-bottom-width: 0px; padding: 0px; margin: 0px;}
+		.table{width:1010px;height:200%;border-collapse: collapse;}
+		.tdTop {text-align: left; height: 180px;}
+		.tdLeft{width: 240px;}
 		.tdBody{border-top-width: 0px;}
 		iframe {width: 100%;height: 100%;}
 	
 	</style>
-	
   </head>
   
   <body>
+  <div></div>
 <table class="table" align="center">
 	<tr class="trTop">
 		<td colspan="2" class="tdTop">
@@ -40,11 +33,6 @@
 		<td class="tdLeft" rowspan="2">
 			<iframe frameborder="0" src="<c:url value='mainFrame/left'/>" name="left"></iframe>
 		</td>
-		<td class="tdSearch" style="border-bottom-width: 0px;">
-			<iframe frameborder="0" src="<c:url value='mainFrame/search'/>" name="search"></iframe>
-		</td>
-	</tr>
-	<tr>
 		<td style="border-top-width: 0px;">
 			<iframe frameborder="0" src="<c:url value='mainFrame/body'/>" name="body"></iframe>
 		</td>

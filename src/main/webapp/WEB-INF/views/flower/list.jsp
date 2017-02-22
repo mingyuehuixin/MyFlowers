@@ -6,11 +6,7 @@
 <head>
 <title>鲜花列表</title>
 
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
+
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
 
 <style type="text/css">
@@ -18,14 +14,10 @@
 ============= */
 html, body {border: 0; margin: 0; padding: 0;}
 body { font: 14px "Lato", Arial, sans-serif; min-width: 100%; min-height: 100%; color: #666; }
-.container{margin: 0 auto; max-width: 1060px;}
-h2{color: #fff; float: left; width: 100%; font-size: 24px; font-weight: 400; text-align: center; padding: 50px 0 40px; position: relative; z-index: 50;}
-h2 span{position: relative; padding-bottom: 10px;}
-h2 span:after{content: ""; width: 50%; height: 3px; background-color: #fff; position: absolute; left: 25%; bottom: 0;}
 *{margin: 0; padding: 0; box-sizing: border-box;}
 img{max-width: 100%; vertical-align: middle;}
-ul{margin: 0 -1.5%;}
-li{float: left; width: 31.33%; margin: 10px 1%; list-style: none;}
+ul{margin: 0 -1.5%;width: 770px;}
+li{float: left; width: 23%; margin: 10px 1%; list-style: none;}
 
 h3{font-size: 20px; margin: 5px 0 10px;}
 p{font-weight: 300; line-height: 20px; font-size: 14px; margin-bottom: 15px;}
@@ -44,7 +36,6 @@ p{font-weight: 300; line-height: 20px; font-size: 14px; margin-bottom: 15px;}
 </style>
 
 </head>
-
 <body>
 	<ul>
 		<c:forEach items="${pb.beanList }" var="flower">
@@ -52,7 +43,7 @@ p{font-weight: 300; line-height: 20px; font-size: 14px; margin-bottom: 15px;}
 					<div class="port-6 effect-3">
 						<div class="image-box">
 						<a href="<c:url value='/flower/loadDesc/${flower.fid }'/>">
-							<img src="${pageContext.request.contextPath}/${flower.image_b }" alt="Image-3">
+							<img src="${pageContext.request.contextPath}/${flower.image_w }" alt="Image-3">
 						</a>
 						</div>
 						<div class="text-desc">
@@ -66,18 +57,13 @@ p{font-weight: 300; line-height: 20px; font-size: 14px; margin-bottom: 15px;}
 							<p>	
 							<a href="<c:url value='/cart/addCart/${flower.fid }'/>" class="btn">加入购物车</a>
 							</p>
-							
-								
+									
 						</div>
 					</div>
 				</li>
-				
-				
 		</c:forEach>
 			</ul>
 	
-
-
 	<div style="float: left; width: 100%; text-align: center;">
 		<hr />
 		<br />
