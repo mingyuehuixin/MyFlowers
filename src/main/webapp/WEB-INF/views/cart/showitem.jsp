@@ -4,19 +4,13 @@
 
 <html>
 <head>
-<title>showitem</title>
+<title>显示购物车条目</title>
 
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='../static/css/cart/showitem.css'/>">
 <script src="<c:url value='../static/js/jquery-1.5.1.js'/>"></script>
 <script src="<c:url value='../static/js/round.js'/>"></script>
-
 <style type="text/css">
 #addr {
 	width: 500px;
@@ -25,13 +19,15 @@
 	padding-left: 10px;
 	line-height: 32px;
 }
-#pna {
+.class {
 	width: 200px;
 	height: 32px;
 	border: 1px solid #7f9db9;
 	padding-left: 10px;
 	line-height: 32px;
 	}
+.error{color: #f40000; font-size: 10pt;}
+
 </style>
 
 <script type="text/javascript">
@@ -43,6 +39,82 @@
 		});
 		$("#total").text(round(total, 2));
 	});
+	
+	
+	$(function() {	
+		/*
+		 * 1. 
+		 */
+		$("#form1").submit(function(){
+			$("#msg").text("");
+			var bool = true;
+			$(".input").each(function() {
+				var inputName = $(this).attr("name");
+				if(!invokeValidateFunction(inputName)) {
+					bool = false;
+				}
+			});
+			return bool;
+		});
+		
+		/*
+		 * 3. 输入框推动焦点时进行校验
+		 */
+		$(".input").blur(function() {
+			var inputName = $(this).attr("name");
+			invokeValidateFunction(inputName);
+		});
+	});
+
+	function invokeValidateFunction(inputName) {
+		inputName = inputName.substring(0, 1).toUpperCase() + inputName.substring(1);
+		var functionName = "validate" + inputName;
+		return eval(functionName + "()");	
+	}
+
+	/*
+	 * 校验收件人姓名
+	 */
+	function validateName() {
+		var bool = true;
+		$("#unameError").css("display", "none");
+		var value = $("#name").val();
+		if(!value) {// 非空校验
+			$("#unameError").css("display", "");
+			$("#unameError").text("收件人姓名不能为空！");
+			bool = false;
+		} 
+		return bool;
+	}
+
+	// 校验电话号码
+	function validatePhone() {
+		var bool = true;
+		$("#uphoneError").css("display", "none");
+		var value = $("#phone").val();
+		if(!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(value))) {// 非空校验
+			$("#uphoneError").css("display", "");
+			$("#uphoneError").text("不是完整的11位手机号或者正确的手机号前七位！");
+			bool = false;
+		} 
+		return bool;
+	}
+
+	/*
+	 * 校验收货地址
+	 */
+	function validateAddress() {
+		var bool = true;
+		$("#uaddressError").css("display", "none");
+		var value = $("#address").val();
+		if(!value) {// 非空校验
+			$("#uaddressError").css("display", "");
+			$("#uaddressError").text("收件人地址不能为空！");
+			bool = false;
+		} 
+		return bool;	
+	}
+	
 </script>
 </head>
 
@@ -92,20 +164,23 @@
 					</tr>
 					<tr>
 					    <td colspan="2">收货人姓名：
-					    	<input id="pna" type="text" name="name" value="" />
+					    	<input id="name" type="text" name="name" class="input" />
+					    	<label id="unameError" class="error"></label>
 					    </td>
 						<td colspan="3">联系电话：
-							<input id="pna" type="text" name="phone" value="" />
+							<input id="phone" type="text" name="phone" class="input" />
+							<label id="uphoneError" class="error"></label>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="6">收货地址：
-							<input id="addr" type="text" name="address" value="" />
+							<input id="address" type="text" name="address" class="input" />
+							<label id="uaddressError" class="error"></label>
 						</td>
 					</tr>
 					<tr>
 						<td style="border-top-width: 4px;" colspan="5" align="right">
-							<a id="linkSubmit" href="javascript:$('#form1').submit();">提交订单</a>
+							<input id="linkSubmit" type="submit" value="提交订单">
 						</td>
 					</tr>
 				</table>

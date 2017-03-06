@@ -110,6 +110,9 @@ public class FlowerServiceImpl implements IFlowerService {
 		}else{
 			flowerList=flowerDao.findByPrice(minprice, maxprice,  (pc-1)*ps, ps);
 		}
+//		for(int i=0;i<flowerList.size();i++){
+//			System.out.println(flowerList.toString());
+//		}
 		PageBean<Flower> pb = new PageBean<Flower>();
 		
 		pb.setBeanList(flowerList);

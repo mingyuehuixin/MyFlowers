@@ -50,7 +50,8 @@
 }  
 #slider a:hover {  
     background: #C6E4F2;  
-}  
+} 
+#newsdiv{height: 800px;} 
 .lct2d {
     background: url(../static/image/lct-2d.png) no-repeat;
     line-height: 25px;
@@ -63,7 +64,7 @@ html, body {border: 0; margin: 0; padding: 0;}
 body { font: 14px "Lato", Arial, sans-serif; min-width: 100%; min-height: 100%; color: #666; }
 *{margin: 0; padding: 0; box-sizing: border-box;}
 img{max-width: 100%; vertical-align: middle;}
-ul{margin: 0 -1.5%;width: 770px;}
+ul{margin: 0 -1.5%;width: 770px;height: 100%;}
 li{float: left; width: 23%; margin: 10px 1%; list-style: none;}
 
 h3{font-size: 20px; margin: 5px 0 10px;}
@@ -91,8 +92,9 @@ p{font-weight: 300; line-height: 20px; font-size: 14px; margin-bottom: 15px;}
     <div id="slider">  
         <a href="#image1">1</a>  
         <a href="#image2">2</a>  
-    </div>  
-    <div>
+    </div> 
+     
+    <div id="newsdiv">
     <h2 class="lct2d">新品推荐</h2>
     <ul>
 		<c:forEach items="${pb.beanList }" var="flower">
@@ -111,8 +113,17 @@ p{font-weight: 300; line-height: 20px; font-size: 14px; margin-bottom: 15px;}
 								<span style="color:999; text-decoration: line-through;">市场价：&yen;${flower.price }</span>
 								<br> 
     							<span style="color:red">特惠价：&yen;${flower.currPrice }</span>
-							<p>	
-							<a href="<c:url value='/cart/addCart/${flower.fid }'/>" class="btn">加入购物车</a>
+							<p>
+							
+							<c:choose>
+							<c:when test="${empty sessionScope.sessionUser }">	
+								<a href="javascript:alert('您还没有登录，请登录')" class="btn">加入购物车</a>
+							</c:when>
+							<c:otherwise>
+								<a href="<c:url value='/cart/addCart/${flower.fid }'/>" onclick="alert('加入购物车成功')" class="btn">加入购物车</a>
+							</c:otherwise>
+							</c:choose>
+								
 							</p>
 									
 						</div>
@@ -121,7 +132,6 @@ p{font-weight: 300; line-height: 20px; font-size: 14px; margin-bottom: 15px;}
 		</c:forEach>
 			</ul>
     </div>
-    
     
 </body>  
 </html>  

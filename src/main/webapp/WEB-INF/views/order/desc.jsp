@@ -21,7 +21,7 @@
 	<c:when test="${order.status eq 4 }">(交易成功)</c:when>
 	<c:when test="${order.status eq 5 }">(已取消)</c:when>
 </c:choose>	
-		　　　下单时间：${order.ordertime }</span>
+		　下单时间：${order.ordertime }</span>
 	</div>
 	<br>
 	<div class="divContent">

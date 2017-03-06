@@ -4,7 +4,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>   
-    <title>main</title>
+    <title>玫瑰之约网上鲜花商城</title>
 	
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
 	<style type="text/css">
@@ -26,15 +26,15 @@
 <table class="table" align="center">
 	<tr class="trTop">
 		<td colspan="2" class="tdTop">
-			<iframe frameborder="0" src="<c:url value='mainFrame/top'/>" name="top"></iframe>
+			<iframe scrolling="no" frameborder="0" src="<c:url value='mainFrame/top'/>" name="top"></iframe>
 		</td>
 	</tr>
 	<tr>
 		<td class="tdLeft" rowspan="2">
-			<iframe frameborder="0" src="<c:url value='mainFrame/left'/>" name="left"></iframe>
+			<iframe scrolling="no" frameborder="0" src="<c:url value='mainFrame/left'/>" name="left"></iframe>
 		</td>
 		<td style="border-top-width: 0px;">
-			<iframe frameborder="0" src="<c:url value='mainFrame/body'/>" name="body"></iframe>
+			<iframe scrolling="no" frameborder="0" src="<c:url value='mainFrame/body'/>" name="body"></iframe>
 		</td>
 	</tr>
 </table>

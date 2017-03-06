@@ -55,11 +55,11 @@ a:hover {color:#FF6600; text-decoration: underline;}
   <body>
   <c:choose>
   	<c:when test="${code eq 'success' }">
-  		<c:set var="img" value="../static/image/duihao.jpg"/>
+  		<c:set var="img" value="../../static/image/duihao.jpg"/>
   		<c:set var="title" value="成功"/>
   	</c:when>
   	<c:when test="${code eq 'error' }">
-  		<c:set var="img" value="../static/image/cuohao.png"/>
+  		<c:set var="img" value="../../static/image/cuohao.png"/>
   		<c:set var="title" value="失败"/>
   	</c:when>
   	

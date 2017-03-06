@@ -237,8 +237,8 @@ public class OrderController {
 	 * 1. 引导用户的浏览器重定向(如果用户关闭了浏览器，就不能访问这里了)
 	 * 2. 易宝的服务器会使用点对点通讯的方法访问这个方法。（必须回馈success，不然易宝服务器会一直调用这个方法）
 	 */
-	@RequestMapping("/back/{oid}")
-	public String back(@PathVariable String oid,HttpServletRequest request,HttpServletResponse response,Model model) throws IOException{
+	@RequestMapping("/back")
+	public String back(HttpServletRequest request,HttpServletResponse response,Model model) throws IOException{
 		/*
 		 * 1. 获取12个参数
 		 */
@@ -277,10 +277,10 @@ public class OrderController {
 			return "mainFrame/msg";
 		}
 		if(r1_Code.equals("1")) {
-			orderService.updateStatus(r6_Order, 2);
+			orderService.updateStatus(r6_Order, 2);//修改订单状态
 			if(r9_BType.equals("1")) {
 				request.setAttribute("code", "success");
-				request.setAttribute("msg", "恭喜，支付成功！");
+				request.setAttribute("msg", "恭喜您，支付成功！");
 				return "mainFrame/msg";				
 			} else if(r9_BType.equals("2")) {
 				response.getWriter().print("success");

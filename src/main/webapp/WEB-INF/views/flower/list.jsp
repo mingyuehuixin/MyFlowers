@@ -6,7 +6,6 @@
 <head>
 <title>鲜花列表</title>
 
-
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
 
 <style type="text/css">
@@ -55,9 +54,16 @@ p{font-weight: 300; line-height: 20px; font-size: 14px; margin-bottom: 15px;}
 								<br> 
     							<span style="color:red">特惠价：&yen;${flower.currPrice }</span>
 							<p>	
-							<a href="<c:url value='/cart/addCart/${flower.fid }'/>" class="btn">加入购物车</a>
-							</p>
-									
+							<c:choose>
+							<c:when test="${empty sessionScope.sessionUser }">	
+								<a href="javascript:alert('您还没有登录，请登录')" class="btn">加入购物车</a>
+							</c:when>
+							<c:otherwise>
+								<a href="<c:url value='/cart/addCart/${flower.fid }'/>" onclick="alert('加入购物车成功')" class="btn">加入购物车</a>
+							</c:otherwise>
+							</c:choose>
+							
+							</p>			
 						</div>
 					</div>
 				</li>
