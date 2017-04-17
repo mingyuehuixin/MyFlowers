@@ -65,7 +65,7 @@ body { font: 14px "Lato", Arial, sans-serif; min-width: 100%; min-height: 100%; 
 *{margin: 0; padding: 0; box-sizing: border-box;}
 img{max-width: 100%; vertical-align: middle;}
 ul{margin: 0 -1.5%;width: 770px;height: 100%;}
-li{float: left; width: 23%; margin: 10px 1%; list-style: none;}
+li{float: left; width: 30%; margin: 10px 1%; list-style: none;}
 
 h3{font-size: 20px; margin: 5px 0 10px;}
 p{font-weight: 300; line-height: 20px; font-size: 14px; margin-bottom: 15px;}

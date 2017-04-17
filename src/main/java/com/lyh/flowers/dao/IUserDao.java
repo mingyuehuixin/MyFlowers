@@ -7,14 +7,16 @@ public interface IUserDao {
     
     int findByUidAndPassword(String uid,String oldpass);
     void insert(User record);
-    void updatePassWord(String uid,String newpass);
+    boolean updatePassWord(String uid,String newpass);
     
     User selectByPrimaryKey(Integer id);
-
+    
+    User findByCode(String code);
     User findByEmail(String email);
     User findByUserName(String loginname);
-    
+    User findByUid(String uid);
     int updateByPrimaryKey(User record);
+    void updateStatus(User user);
     
     User loginCheck(String empname,String password);
 }

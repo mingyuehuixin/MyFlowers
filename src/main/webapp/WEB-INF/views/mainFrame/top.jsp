@@ -34,15 +34,13 @@
 	
 	</c:when>
 	<c:otherwise>
-	
-	
 	<div id="PanelTop" class="warp">
 		      当前会员：${sessionScope.sessionUser.loginname }&nbsp;&nbsp;|&nbsp;&nbsp;
 		  <a href="<c:url value='../cart/cartlist'/>" target="body">我的购物车</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 		  <a href="<c:url value='../order/orderlist'/>" target="body">我的订单</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 		  <a href="<c:url value='../user/changePwd'/>" target="body">修改密码</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 		  <a href="<c:url value='../user/quit'/>" target="_parent">退出</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-		  <a href="#" target="body">帮助中心</a>	
+		  <a href="#" >帮助中心</a>	
 		
 	</div>
 	<div id="PanelHead" class="warp">
@@ -73,16 +71,14 @@
 						<a href="../mainFrame/index" target="_parent">首页</a>
 					</p></li>
 				<li><p class="Over">
-						<a href="/goodslist/3/" title="情人节专栏" target="body">情人节专栏</a>
+						<a href="../flower/flowerList/40001" title="情人节专栏" target="body">情人节专栏</a>
+					</p></li>
+				
+				<li><p class="">
+						<a href="../flower/flowerList/i0010" title="开业花篮" target="body">开业花篮</a>
 					</p></li>
 				<li><p class="">
-						<a href="/goodslist/2/" title="蝴蝶兰" target="body">蝴蝶兰</a>
-					</p></li>
-				<li><p class="">
-						<a href="/goodslist/5/" title="开业花篮" target="body">开业花篮</a>
-					</p></li>
-				<li><p class="">
-						<a href="/goodslist/10/" title="99朵玫瑰" target="body">99朵玫瑰</a>
+						<a href="../flower/flowerList/50011" title="99朵玫瑰" target="body">99朵玫瑰</a>
 					</p></li>
 			</ul>
 		</div>

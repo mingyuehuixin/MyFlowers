@@ -83,13 +83,13 @@ function validateLoginname() {
 	/*
 	 * 2. 长度校验
 	 */
-	if(value.length < 3 || value.length > 20) {
+	if(value.length < 3 || value.length > 10) {
 		/*
 		 * 获取对应的label
 		 * 添加错误信息
 		 * 显示label
 		 */
-		$("#" + id + "Error").text("用户名长度必须在3 ~ 20之间！");
+		$("#" + id + "Error").text("用户名长度必须在3 ~ 10之间！");
 		showError($("#" + id + "Error"));
 		false;
 	}
@@ -136,15 +136,28 @@ function validateLoginpass() {
 		return false;
 	}
 	/*
-	 * 2. 长度校验
+	 * 2. 密码格式验证
 	 */
-	if(value.length < 3 || value.length > 20) {
+	if(!/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,10}$/.test(value)) {
 		/*
 		 * 获取对应的label
 		 * 添加错误信息
 		 * 显示label
 		 */
-		$("#" + id + "Error").text("密码长度必须在3 ~ 20之间！");
+		$("#" + id + "Error").text("密码必须由字母和数字组成");
+		showError($("#" + id + "Error"));
+		false;
+	}
+	/*
+	 * 3. 长度校验
+	 */
+	if(value.length < 6 || value.length > 10) {
+		/*
+		 * 获取对应的label
+		 * 添加错误信息
+		 * 显示label
+		 */
+		$("#" + id + "Error").text("密码长度必须在6 ~ 10之间！");
 		showError($("#" + id + "Error"));
 		false;
 	}

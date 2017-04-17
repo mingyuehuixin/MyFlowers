@@ -62,7 +62,6 @@ public class OrderServiceImpl implements IOrderService {
 	@Override
 	public void createOrder(Order order) {
 		
-//		orderDao.add(order.getOid(), order.getOrdertime(), order.getTotal(), order.getStatus(), order.getAddress(), order.getOwner().getUid());
 		orderDao.add(order);
 	}
 

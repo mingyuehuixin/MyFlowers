@@ -45,10 +45,10 @@
     select *
     from t_flower
     where ( (#{0}="-1"||material like CONCAT(CONCAT('%',#{0},'%')))
-    		and (#{1}="-1"||target=#{1}) 
+    		and (#{1}="-1"||target like CONCAT(CONCAT('%',#{1},'%'))) 
     		and (#{2}="-1"||branchnumber=#{2}) 
     		and (#{3}="-1"||flowercolor=#{3}) 
-    		and (#{4}="-1"||makeuse=#{4})
+    		and (#{4}="-1"||makeuse like CONCAT(CONCAT('%',#{4},'%')))
     		and (#{5}="-1"||type=#{5})
     		)
     limit #{6},#{7} 

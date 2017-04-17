@@ -44,8 +44,17 @@
 						class="InvText frameMarginLeft">市场价:&yen;${flower.price }</span>
 				</p>
 				<div class="frameMarginTop">
-					<a class="BtnBuy buyIt"
-						href="<c:url value='/cart/addCart/${flower.fid }'/>"></a>
+					<c:choose>
+								<c:when test="${empty sessionScope.sessionUser }">	
+									<a class="BtnBuy buyIt" href="javascript:alert('您还没有登录，请登录')" ></a>
+								</c:when>
+								<c:otherwise>
+									<a class="BtnBuy buyIt" href="<c:url value='/cart/addCart/${flower.fid }'/>" onclick="alert('加入购物车成功')" class="btn"></a>
+								</c:otherwise>
+								</c:choose>
+					
+					
+					
 				</div>
 			</div>
 			<div id="ckepop" style="margin-top: 20px;">
@@ -68,7 +77,10 @@
 				<span
 					style="font-family: lucida sans unicode, lucida grande, sans-serif"><span
 					style="color: #ff0000">
-				<span style="font-size: 18px">花材：${flower.material }<span>A</span>级红玫瑰<span>${flower.branchnumber }</span>朵<span>,</span>${flower.packing }<span
+				<span style="font-size: 18px">花材：${flower.material }
+				<span>A</span>级红玫瑰
+				<span>${flower.branchnumber }</span>
+				朵<span>,</span>${flower.packing }<span
 							style="font-weight: normal"></span></span></span></span>
 			</p>
 			<p>&nbsp;</p>

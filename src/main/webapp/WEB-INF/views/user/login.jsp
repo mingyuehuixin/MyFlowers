@@ -7,12 +7,6 @@
     
     <title>登录</title>
     
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<meta http-equiv="content-type" content="text/html;charset=utf-8">
 	<link rel="stylesheet" type="text/css" href="<c:url value='../static/css/user/login.css'/>">
 	<script type="text/javascript" src="<c:url value='../static/js/jquery-1.5.1.js'/>"></script>
 	<script src="<c:url value='../static/js/common.js'/>"></script>
@@ -39,15 +33,11 @@
 	      <div class="login2">
             <div class="loginTopDiv">
               <span class="loginTop">会员登录</span>
-              <span>
-                <a href="<c:url value='../user/regist'/>" class="registBtn">注册</a>
-              </span>
+			 <a href="<c:url value='../user/regist'/>" class="registBtn">注册</a>
             </div>
             
               <form target="_top" action="<c:url value='../user/login'/>" method="post" id="loginForm">
                 <input type="hidden" name="method" value="login" />
-                 
-                  
                   <table>
                     <tr>
                       <td width="50"></td>
@@ -86,14 +76,20 @@
                       <td align="left">
                         <input type="image" id="submit" src="<c:url value='../static/image/login1.jpg'/>" class="loginBtn"/>
                       </td>
+                      <td align="left">
+                      <span>
+                      <a href="<c:url value='../user/forgotPassword'/>" >忘记密码？</a>
+                      </span>
+                      </td>
                     </tr>																				
                  </table>
               </form>
+               
             </div>
           </div>
         </div>
       </div>
-	</div>
+	
   </body>
 </html>
 	

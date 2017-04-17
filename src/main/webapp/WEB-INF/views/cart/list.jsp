@@ -61,9 +61,11 @@ $(function() {
 	*/
 	$(".jian").click(function() {
 		// 获取cartItemId
-		var id = $(this).attr("id").substring(0, 32);
+		var id = $(this).attr("id").substring(0, 64);
+		//alert(id);
 		// 获取输入框中的数量
 		var quantity = $("#" + id + "Quantity").val();
+		
 		// 判断当前数量是否为1，如果为1,那就不是修改数量了，而是要删除了。
 		if(quantity == 1) {
 			if(confirm("您是否真要删除该条目？")) {
@@ -77,10 +79,13 @@ $(function() {
 	// 给加号添加click事件
 	$(".jia").click(function() {
 		// 获取cartItemId
-		var id = $(this).attr("id").substring(0, 32);
+		var id = $(this).attr("id").substring(0, 64);
+	//	alert("id:"+id);
 		// 获取输入框中的数量
-		var quantity = $("#" + id + "Quantity").val();
-		sendUpdateQuantity(id, Number(quantity)+1);
+		//var quantity = $("#" + id + "Quantity").val();
+		var quantity=$(".quantity").val();
+	//	alert("quantity:"+(Number(quantity)+1));
+		sendUpdateQuantity(id, (Number(quantity)+1));
 	});
 });
 

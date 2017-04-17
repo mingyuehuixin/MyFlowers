@@ -2,18 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-
 <html>
   <head>
     <title>添加新花束</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<meta http-equiv="content-type" content="text/html;charset=utf-8">
-	
+    	
 <link rel="stylesheet" type="text/css" href="<c:url value='../static/js/jquery.datepick.css'/>">
 <script type="text/javascript" src="<c:url value='../static/js/jquery-1.5.1.js'/>"></script>
 <script type="text/javascript" src="<c:url value='../static/js/jquery.datepick.js'/>"></script>
@@ -101,8 +93,11 @@ $(function () {
   <br>
   <div>
    <p style="font-weight: 900; color: red;">${msg }</p>
+   <!--  
    <form:form method="POST" modelAttribute="flower" enctype="multipart/form-data" id="form">
    <form:input type="hidden" path="fid" id="fid"/>
+    -->
+    <form action="<c:url value='/flowerM/addflower'/>" enctype="multipart/form-data" method="post" id="form">
     <div>
 	    <ul>
 	    	<li>花束名称：　<input id="fname" type="text" name="fname" value="${flower.fname }" style="width:390px;"/></li>
@@ -190,7 +185,10 @@ $(function () {
 			</tr>
 		</table>
 	</div>
+	<!--  
    </form:form>
+   -->
+   </form>
   </div>
 
   </body>

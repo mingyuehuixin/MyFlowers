@@ -1,4 +1,4 @@
-table {font-size: 10pt;font-family: SimSun;border-color: #efeae5;border-style: solid;border-width: 5px;color: #404040;}
+table {margin: auto;position: relative;align:center;font-size: 10pt;font-family: SimSun;border-color: #efeae5;border-style: solid;border-width: 5px;color: #404040;width: 1200px;}
 td {border-color: #efeae5;border-style: solid;border-width: 0;border-bottom-width: 1px;padding: 10px;}
 #linkSubmit {background: url(../../image/icon2.png) no-repeat;display: inline-block;background-position: 0px -35px;height: 40px;width: 190px;text-align: center;text-decoration: none;font-size: 24px;font-weight: 900;color: #ffffff;font-family: 黑体;line-height: 40px;}
 #linkSubmit:HOVER {background: url(../../image/icon2.png) no-repeat;display: inline-block;background-position: 0px -75px;height: 40px;width: 190px;}

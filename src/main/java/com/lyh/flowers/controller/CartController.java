@@ -150,11 +150,11 @@ public class CartController {
 		
 		CartItem cartItem=new CartItem();
 		User user = (User)request.getSession().getAttribute("sessionUser");
-		if(user==null){
-			response.getWriter().print("<script language=\"javascript\" charst=\"UTF-8\">alert('您还未登录，请先登录！');</script>");
-			
-			return null;
-		}
+//		if(user==null){
+//			response.getWriter().print("<script language=\"javascript\" charst=\"UTF-8\">alert('您还未登录，请先登录！');</script>");
+//			
+//			return null;
+//		}
 		Flower flower=flowerService.findByFid(fid);
 //		System.out.println(flower.toString());
 		cartItem.setFlower(flower);

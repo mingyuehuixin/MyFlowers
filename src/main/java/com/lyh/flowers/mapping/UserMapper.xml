@@ -8,9 +8,12 @@
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="activationCode" property="activationCode" jdbcType="VARCHAR" />
+    <result column="registTime" property="registTime" jdbcType="CHAR" />
+    <result column="validataCode" property="validataCode" jdbcType="VARCHAR" />
+    <result column="outDate" property="outDate" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    uid, loginname, loginpass, email, status,activationCode
+    uid, loginname, loginpass, email, status,activationCode,registTime,validataCode,outDate
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -25,10 +28,22 @@
     where email = #{email,jdbcType=VARCHAR}
   </select>
   
+  <select id="findByCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select * 
+    from t_user 
+    where activationCode=#{0}
+  </select>
+  
+  <select id="findByUid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select * 
+    from t_user 
+    where uid=#{0}
+  </select>
+  
   <select id="findByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select *
     from t_user
-    where loginname = #{loginname,jdbcType=VARCHAR}
+    where loginname =#{0}
   </select>
   
    <select id="findByUidAndPassword" resultType="java.lang.Integer" parameterType="java.lang.String">
@@ -45,9 +60,10 @@
      where uid = #{uid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.lyh.flowers.pojo.User" >
-    insert into t_user ( uid, loginname, loginpass, email, status,activationCode)
+    insert into t_user ( uid, loginname, loginpass, email, status,activationCode,registTime,validataCode,outDate)
     values (#{uid,jdbcType=VARCHAR}, #{loginname,jdbcType=VARCHAR}, #{loginpass,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR},#{status,jdbcType=INTEGER},#{activationCode,jdbcType=VARCHAR})
+      #{email,jdbcType=VARCHAR},#{status,jdbcType=INTEGER},#{activationCode,jdbcType=VARCHAR},
+      #{registTime,jdbcType=CHAR},#{validataCode,jdbcType=VARCHAR},#{outDate,jdbcType=CHAR})
   </insert>
   
   <update id="updateByPrimaryKey" parameterType="com.lyh.flowers.pojo.User" >
@@ -57,13 +73,22 @@
         email = #{email,jdbcType=VARCHAR},
         status = #{status,jdbcType=INTEGER},
         activationCode = #{activationCode,jdbcType=VARCHAR},
+        registTime = #{registTime,jdbcType=CHAR},
+        validataCode = #{validataCode,jdbcType=VARCHAR},
+        outDate=#{outDate,jdbcType=CHAR}
     where uid = #{uid,jdbcType=VARCHAR}
   </update>
-   <update id="updatePassWord" parameterType="java.lang.String" >
+   <update id="updatePassWord" parameterType="java.lang.String">
     update t_user
     set 
         loginpass = #{1}
     where uid = #{0}
+  </update>
+  
+  <update id="updateStatus" parameterType="com.lyh.flowers.pojo.User" >
+    update t_user 
+    set status = #{status,jdbcType=INTEGER}
+    where uid=#{uid,jdbcType=VARCHAR}
   </update>
   
 </mapper>

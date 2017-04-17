@@ -1,14 +1,36 @@
 package com.lyh.flowers.pojo;
 
+import java.util.Date;
+
 public class User {
 	// 对应数据库表
 		private String uid;//主键
 		private String loginname;//登录名
 		private String loginpass;//登录密码
 		private String email;//邮箱
-		private boolean status;//状态，true表示已激活，或者未激活
+		private int status;//状态，true表示已激活，或者未激活
+
 		private String activationCode;//激活码，它是唯一值！即每个用户的激活码是不同的！
+		private Date registTime;//注册时间
 		
+		private String validataCode;//激活码，它是唯一值！即每个用户的激活码是不同的！
+		private Date outDate;//注册时间
+		
+		public int getStatus() {
+			return status;
+		}
+		
+		public void setStatus(int status) {
+			this.status = status;
+		}
+		public Date getRegistTime() {
+			return registTime;
+		}
+
+		public void setRegistTime(Date registTime) {
+			this.registTime = registTime;
+		}
+
 		// 注册表单
 		private String reloginpass;//确认密码
 		private String verifyCode;//验证码
@@ -72,13 +94,7 @@ public class User {
 			this.email = email;
 		}
 
-		public boolean isStatus() {
-			return status;
-		}
-
-		public void setStatus(boolean status) {
-			this.status = status;
-		}
+	
 
 		public String getActivationCode() {
 			return activationCode;
@@ -86,6 +102,25 @@ public class User {
 
 		public void setActivationCode(String activationCode) {
 			this.activationCode = activationCode;
+		}
+
+		
+		public String getValidataCode() {
+			return validataCode;
+		}
+
+		public void setValidataCode(String validataCode) {
+			this.validataCode = validataCode;
+		}
+
+		
+
+		public Date getOutDate() {
+			return outDate;
+		}
+
+		public void setOutDate(Date outDate) {
+			this.outDate = outDate;
 		}
 
 		@Override

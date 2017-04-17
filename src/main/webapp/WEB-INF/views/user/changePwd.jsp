@@ -34,12 +34,12 @@
 			</tr>
 			<tr>
 				<td align="right">新密码:</td>
-				<td><input class="input" type="password" name="newpass" id="newpass" value="${newpass }""/></td>
+				<td><input class="input" type="password" name="newpass" id="newpass" value="${newpass }"/></td>
 				<td><label id="newpassError" class="error"></label></td>
 			</tr>
 			<tr>
 				<td align="right">确认密码:</td>
-				<td><input class="input" type="password" name="reloginpass" id="reloginpass" value="${reloginpass }""/></td>
+				<td><input class="input" type="password" name="reloginpass" id="reloginpass" value="${reloginpass }"/></td>
 				<td><label id="reloginpassError" class="error"></label></td>
 			</tr>
 			<tr>
@@ -52,7 +52,7 @@
 			<tr>
 				<td align="right">验证码:</td>
 				<td>
-				  <input class="input" type="text" name="verifyCode" id="verifyCode" value="${verifyCode }""/>
+				  <input class="input" type="text" name="verifyCode" id="verifyCode" value="${verifyCode }"/>
 				</td>
 				<td><label id="verifyCodeError" class="error"></label></td>
 			</tr>

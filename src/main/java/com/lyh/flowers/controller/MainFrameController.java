@@ -78,7 +78,7 @@ public class MainFrameController {
 	
 	@RequestMapping("/body")
 	public String body(HttpServletRequest request,Model model){
-		PageBean<Flower> pb=flowerService.seachByKeyWord("玫瑰", 1);
+		PageBean<Flower> pb=flowerService.seachByKeyWord("新", 1);
 		model.addAttribute("pb", pb);
 		
 		return "mainFrame/body";

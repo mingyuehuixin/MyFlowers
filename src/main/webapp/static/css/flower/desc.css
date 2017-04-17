@@ -46,6 +46,7 @@ html, body, p, div, li, ul, form, ol, dt, h1, h2, h3, h4, h5 {
 	    font-size: 16px;
 	    line-height: 25px;
 	    text-align: center;
+	    color: blue;
 	}
 	#GoodsHead dt {
 	    float: left;

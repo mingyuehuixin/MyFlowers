@@ -15,7 +15,7 @@
 		.table{width:1010px;height:200%;border-collapse: collapse;}
 		.tdTop {text-align: left; height: 180px;}
 		.tdLeft{width: 240px;}
-		.tdBody{border-top-width: 0px;}
+		.tdBody{border-top-width: 0px;height: 100%;}
 		iframe {width: 100%;height: 100%;}
 	
 	</style>
@@ -33,7 +33,7 @@
 		<td class="tdLeft" rowspan="2">
 			<iframe scrolling="no" frameborder="0" src="<c:url value='mainFrame/left'/>" name="left"></iframe>
 		</td>
-		<td style="border-top-width: 0px;">
+		<td class="tdBody" style="border-top-width: 0px;">
 			<iframe scrolling="no" frameborder="0" src="<c:url value='mainFrame/body'/>" name="body"></iframe>
 		</td>
 	</tr>

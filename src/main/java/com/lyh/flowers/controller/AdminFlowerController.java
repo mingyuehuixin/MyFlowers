@@ -174,8 +174,21 @@ public class AdminFlowerController {
 	}	
 	
 	@RequestMapping(value="/addflower",method={RequestMethod.POST})
-	public String doadd(@Validated Flower flower,@RequestParam("image_w") MultipartFile image_w,
+	public String doadd(@RequestParam("image_w") MultipartFile image_w,
 			@RequestParam("image_b") MultipartFile image_b, HttpServletRequest request,ModelMap model) throws ServletException, IOException{
+		Flower flower=new Flower();
+		flower.setBranchnumber(Integer.parseInt(request.getParameter("branchnumber")));
+		flower.setFname(request.getParameter("fname"));
+		flower.setFlowersaying(request.getParameter("flowersaying"));
+		flower.setFlowercolor(request.getParameter("flowercolor"));
+		flower.setCurrPrice(Double.parseDouble(request.getParameter("currPrice")));
+		flower.setPrice(Double.parseDouble(request.getParameter("price")));
+		flower.setPacking(request.getParameter("packing"));
+		flower.setMakeuse(request.getParameter("makeuse"));
+		flower.setMaterial(request.getParameter("material"));
+		flower.setTarget(request.getParameter("target"));
+		flower.setType(request.getParameter("type"));
+		flower.setDiscount(Double.parseDouble(request.getParameter("discount")));
 		/*
 		 * 把上传的图片保存起来
 		 *   > 获取文件名：截取之

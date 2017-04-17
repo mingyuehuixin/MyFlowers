@@ -1,4 +1,4 @@
-package hpe.books.testmybatis;
+package hpe.lyh.testmybatis;
 
 import javax.annotation.Resource;
 
