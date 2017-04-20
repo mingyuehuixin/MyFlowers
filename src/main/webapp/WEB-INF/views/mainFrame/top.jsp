@@ -38,6 +38,7 @@
 		      当前会员：${sessionScope.sessionUser.loginname }&nbsp;&nbsp;|&nbsp;&nbsp;
 		  <a href="<c:url value='../cart/cartlist'/>" target="body">我的购物车</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 		  <a href="<c:url value='../order/orderlist'/>" target="body">我的订单</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+		  <a href="<c:url value='../address/showAddress'/>" target="body">地址管理</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 		  <a href="<c:url value='../user/changePwd'/>" target="body">修改密码</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 		  <a href="<c:url value='../user/quit'/>" target="_parent">退出</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 		  <a href="#" >帮助中心</a>	

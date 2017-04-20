@@ -1,4 +1,4 @@
-table {margin: auto;position: relative;align:center;font-size: 10pt;font-family: SimSun;border-color: #efeae5;border-style: solid;border-width: 5px;color: #404040;width: 1200px;}
+table {margin: auto;position: relative;align:center;font-size: 10pt;font-family: SimSun;border-color: #efeae5;border-style: solid;border-width: 5px;color: #404040;}
 td {border-color: #efeae5;border-style: solid;border-width: 0;border-bottom-width: 1px;padding: 10px;}
 #linkSubmit {background: url(../../image/icon2.png) no-repeat;display: inline-block;background-position: 0px -35px;height: 40px;width: 190px;text-align: center;text-decoration: none;font-size: 24px;font-weight: 900;color: #ffffff;font-family: 黑体;line-height: 40px;}
 #linkSubmit:HOVER {background: url(../../image/icon2.png) no-repeat;display: inline-block;background-position: 0px -75px;height: 40px;width: 190px;}
@@ -10,3 +10,9 @@ a:hover {color:#FF6600; text-decoration: underline;}
 a.linkImage {display: inline-block;border: 1px solid #ffffff;}
 a.linkImage:HOVER {display: inline-block;border: 1px solid #d0d0d0;}
 a.link2:active {border: 1px dotted #404040;}
+
+
+.Caddress{width: 1210px;margin: auto;position: relative;height: 160px;}
+.Caddress .add_mi{height: 106px;float: left;margin-right: 5px; background: url(../static/image/mail.jpg) no-repeat;padding: 6px 17px;}
+.Caddress .add_mi p{font-size: 12px;line-height: 20px;margin-bottom: 5px;color: #666;width: 203px;}
+

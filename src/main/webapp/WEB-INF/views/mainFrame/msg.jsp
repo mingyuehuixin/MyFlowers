@@ -70,7 +70,6 @@ a:hover {color:#FF6600; text-decoration: underline;}
 		<br/>
 		<br/>
 		<br/>
-		<span style="margin-left: 50px;"><a target="_top" href="<c:url value='mailto:1286005044'/>">马上到邮箱激活</a></span>
 		<span style="margin-left: 50px;"><a target="_top" href="<c:url value='../user/login'/>">登录</a></span>
 		<span style="margin-left: 50px;"><a target="_top" href="<c:url value='/index.jsp'/>">主页</a></span>
 	  </div>

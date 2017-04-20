@@ -6,13 +6,11 @@
     <result column="ordertime" property="ordertime" jdbcType="CHAR" />
     <result column="total" property="total" jdbcType="DECIMAL" />
     <result column="status" property="status" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="phone" property="phone" jdbcType="CHAR" />
-    <result column="address" property="address" jdbcType="CHAR" />
     <result column="uid" property="uid" jdbcType="CHAR" />
+    <result column="adid" property="adid" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    oid, ordertime, total, status,name,phone, address, uid
+    oid, ordertime, total, status, uid, adid
   </sql>
  
   <select id="findStatus" resultType="java.lang.Integer">
@@ -64,9 +62,9 @@
   
   
   <insert id="add" parameterType="com.lyh.flowers.pojo.Order" >
-   insert into t_order(oid, ordertime, total, status,name,phone, address, uid)
+   insert into t_order(oid, ordertime, total, status,adid, uid)
              values(#{oid,jdbcType=CHAR},#{ordertime,jdbcType=CHAR},#{total,jdbcType=DECIMAL},#{status,jdbcType=INTEGER},
-             		#{name,jdbcType=VARCHAR},#{phone,jdbcType=CHAR},#{address,jdbcType=VARCHAR},#{uid,jdbcType=CHAR})
+             		#{adid,jdbcType=CHAR},#{uid,jdbcType=CHAR})
   </insert>
   
   <update id="updateStatus" >

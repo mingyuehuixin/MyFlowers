@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lyh.flowers.dao.IAddressDao" >
+  <resultMap id="BaseResultMap" type="com.lyh.flowers.pojo.Address" >
+    <id column="adid" property="adid" jdbcType="CHAR" />
+    <result column="uid" property="uid" jdbcType="CHAR" />
+    <result column="adname" property="adname" jdbcType="VARCHAR" />
+    <result column="adphone" property="adphone" jdbcType="CHAR" />
+    <result column="adprovince" property="adprovince" jdbcType="VARCHAR" />
+    <result column="adcity" property="adcity" jdbcType="VARCHAR" />
+    <result column="addistrict" property="addistrict" jdbcType="VARCHAR" />
+    <result column="adstreet" property="adstreet" jdbcType="VARCHAR" />
+    <result column="adpostcode" property="adpostcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    adid, uid, adname, adphone, adprovince,adcity,addistrict,adstreet,adpostcode
+  </sql>
+  
+  
+  <select id="findByUid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select *
+    from t_address
+    where uid = #{uid,jdbcType=CHAR}
+  </select>
+  
+  <select id="findByAdid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select *
+    from t_address
+    where adid = #{adid,jdbcType=CHAR}
+  </select>
+  
+  <select id="findCountByUid" resultType="java.lang.Integer">
+    select count(*) 
+    from t_address 
+    where uid = #{uid,jdbcType=CHAR}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.String" >
+    delete from t_address
+     where adid = #{adid,jdbcType=CHAR}
+  </delete>
+  <insert id="add" parameterType="com.lyh.flowers.pojo.Address" >
+    insert into t_address (adid, uid, adname, adphone, adprovince,adcity,addistrict,adstreet,adpostcode)
+    values (#{adid,jdbcType=CHAR}, #{uid,jdbcType=CHAR}, #{adname,jdbcType=VARCHAR}, 
+      #{adphone,jdbcType=CHAR},#{adprovince,jdbcType=VARCHAR},#{adcity,jdbcType=VARCHAR},#{addistrict,jdbcType=VARCHAR},#{adstreet,jdbcType=VARCHAR},
+      #{adpostcode,jdbcType=VARCHAR})
+  </insert>
+  <!-- 
+  <update id="update" parameterType="com.lyh.flowers.pojo.Address" >
+    update t_address
+    set address = #{address,jdbcType=VARCHAR},
+        name = #{name,jdbcType=VARCHAR},
+        phone = #{phone,jdbcType=CHAR},
+    where did = #{did,jdbcType=CHAR}
+  </update>
+   -->
+  
+</mapper>

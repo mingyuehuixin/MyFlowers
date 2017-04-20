@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -25,9 +24,11 @@ import com.lyh.flowers.pojo.Order;
 import com.lyh.flowers.pojo.OrderItem;
 import com.lyh.flowers.pojo.PageBean;
 import com.lyh.flowers.pojo.User;
+import com.lyh.flowers.service.impl.AddressServiceImpl;
 import com.lyh.flowers.service.impl.CartServiceImpl;
 import com.lyh.flowers.service.impl.FlowerServiceImpl;
 import com.lyh.flowers.service.impl.OrderServiceImpl;
+import com.lyh.flowers.util.tools;
 
 @Controller
 @RequestMapping("/order")
@@ -39,15 +40,16 @@ public class OrderController {
 	private CartServiceImpl cartService;
 	@Resource
 	private FlowerServiceImpl flowerService;
+	@Resource
+	private AddressServiceImpl addressService;
 	
-	/**
-	 * 返回一个不重复的字符串
-	 * @return
-	 */
-	public static String uuid() {
-		return UUID.randomUUID().toString().replace("-", "").toUpperCase();
-	}
-	
+//	/**
+//	 * 返回一个不重复的字符串
+//	 * @return
+//	 */
+//	public static String uuid() {
+//		return UUID.randomUUID().toString().replace("-", "").toUpperCase();
+//	}
 	
 	/**
 	 * 获取当前页码
@@ -102,6 +104,8 @@ public class OrderController {
 		List<CartItem> cartItemList=new ArrayList<CartItem>();
 		
 		String[] cartItemIdArray = cartItemIds.split(",");
+		String addressId = request.getParameter("addressId");
+//		System.out.println("addressId:"+addressId);
 		
 		for(String cItemId:cartItemIdArray){
 			CartItem cartItem=cartService.loadCartItem(cItemId);
@@ -111,19 +115,21 @@ public class OrderController {
 		}
 		if(cartItemList.size() == 0) {
 			model.addAttribute("code", "error");
-			model.addAttribute("msg", "您没有选择要购买的图书，不能下单！");
+			model.addAttribute("msg", "您没有选择要购买的鲜花，不能下单！");
 			return "mainFrame/msg";
 		}
 		/*
 		 * 2. 创建Order
 		 */
 		Order order = new Order();
-		order.setOid(uuid());//设置主键
+		order.setOid(tools.uuid());//设置主键
 		order.setOrdertime(String.format("%tF %<tT", new Date()));//下单时间
 		order.setStatus(1);//设置状态，1表示未付款
-		order.setAddress(request.getParameter("address"));//设置收货地址
-		order.setName(request.getParameter("name"));
-		order.setPhone(request.getParameter("phone"));
+		order.setAdid(addressId);
+		order.setAddress(addressService.findByAdid(addressId));
+//		order.setAddress(request.getParameter("address"));//设置收货地址
+//		order.setName(request.getParameter("name"));
+//		order.setPhone(request.getParameter("phone"));
 		
 		User owner = (User)request.getSession().getAttribute("sessionUser");
 		
@@ -143,7 +149,7 @@ public class OrderController {
 		List<OrderItem> orderItemList = new ArrayList<OrderItem>();
 		for(CartItem cartItem : cartItemList) {
 			OrderItem orderItem = new OrderItem();
-			orderItem.setOrderItemId(uuid());//设置主键
+			orderItem.setOrderItemId(tools.uuid());//设置主键
 			orderItem.setQuantity(cartItem.getQuantity());
 			orderItem.setSubtotal(cartItem.getSubtotal());
 			orderItem.setFlower(cartItem.getFlower());
@@ -294,6 +300,7 @@ public class OrderController {
 	@RequestMapping("/desc/{oid}")
 	public String desc(@PathVariable String oid,HttpServletRequest request,Model model){
 		Order order = orderService.load(oid);
+		order.setAddress(addressService.findByAdid(order.getAdid()));
 		model.addAttribute("order", order);
 		
 //		System.out.println(order);
@@ -317,7 +324,7 @@ public class OrderController {
 		}
 		orderService.updateStatus(oid, 5);//设置状态为取消！
 		request.setAttribute("code", "success");
-		request.setAttribute("msg", "您的订单已取消，您不后悔吗！");
+		request.setAttribute("msg", "您的订单已取消");
 		
 		return "mainFrame/msg";
 	}

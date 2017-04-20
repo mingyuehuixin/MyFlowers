@@ -2,7 +2,6 @@ package com.lyh.flowers.controller;
 
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -16,20 +15,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-
-
-
-
-
-
-
-
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lyh.flowers.pojo.Address;
 import com.lyh.flowers.pojo.CartItem;
 import com.lyh.flowers.pojo.Flower;
 import com.lyh.flowers.pojo.User;
+import com.lyh.flowers.service.impl.AddressServiceImpl;
 import com.lyh.flowers.service.impl.CartServiceImpl;
 import com.lyh.flowers.service.impl.FlowerServiceImpl;
 
@@ -41,6 +33,8 @@ public class CartController {
 	private CartServiceImpl cartService;
 	@Resource
 	private FlowerServiceImpl flowerService;
+	@Resource
+	private AddressServiceImpl addressService;
 	
 	/**
 	 * 返回一个不重复的字符串
@@ -131,6 +125,7 @@ public class CartController {
 		String cartItemIds = request.getParameter("cartItemIds");
 		double total = Double.parseDouble(request.getParameter("total"));
 		String[] cartItemIdArray = cartItemIds.split(",");
+		
 //		System.out.println("cartItemIds"+cartItemIds);
 		List<CartItem> cartItemList=new ArrayList<CartItem>();
 		for(String cItemId:cartItemIdArray){
@@ -139,6 +134,10 @@ public class CartController {
 			cartItem.setFlower(flower);
 			cartItemList.add(cartItem);
 		}
+		User owner = (User)request.getSession().getAttribute("sessionUser");
+		List<Address> addressList=addressService.findByUid(owner.getUid());
+		
+		model.addAttribute("addressList", addressList);
 		model.addAttribute("cartItemList", cartItemList);
 		model.addAttribute("total", total);
 		model.addAttribute("cartItemIds", cartItemIds);

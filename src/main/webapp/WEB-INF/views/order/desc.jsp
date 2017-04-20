@@ -28,9 +28,10 @@
 		<div class="div2">
 			<dl>
 				<dt>收货人信息</dt>
-				<dd>姓名：${order.name }   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				          电话：${order.phone }</dd>
-				<dd>地址：${order.address }</dd>
+				<dd>姓名：${order.address.adname }   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				          电话：${order.address.adphone }</dd>
+				<dd>地址：${order.address.adprovince }${order.address.adcity }${order.address.addistrict }
+					${order.address.adstreet }${order.address.adphone }</dd>
 			</dl>
 		</div>
 		<div class="div2">

@@ -6,12 +6,6 @@
   <head>
     <title>ordersucc</title>
     
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	
 	<link rel="stylesheet" type="text/css" href="<c:url value='../../static/css/order/ordersucc.css'/>">
   </head>
   
@@ -27,7 +21,9 @@
 		<dt>合计金额</dt>
 		<dd><span class="price_t">&yen;${order.total }</span></dd>
 		<dt>收货地址</dt>
-		<dd>${order.address }</dd>
+		<dd>${order.address.adprovince }${order.address.adcity }${order.address.addistrict }
+			${order.address.adstreet }${order.address.adphone }
+		</dd>
 	</dl>
 	<br><br>
 	<a href="<c:url value='../../order/paymentPre/${order.oid }'/>" id="linkPay">支付</a>
