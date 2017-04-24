@@ -31,7 +31,9 @@ public class AdddressController {
 	public String addAddress(HttpServletResponse response,
 			HttpServletRequest request, Model model, HttpSession httpSession) {
 		User owner = (User) request.getSession().getAttribute("sessionUser");
-
+		
+		String adid = request.getParameter("adid");
+		
 		String str = request.getParameter("str");
 		String[] strArray = str.split("/");
 
@@ -44,7 +46,6 @@ public class AdddressController {
 		String adname = request.getParameter("adname");
 		String phone = request.getParameter("adphone");
 		Address address = new Address();
-		address.setAdid(tools.uuid());
 		address.setUid(owner.getUid());
 		address.setAdname(adname);
 		address.setAdcity(city);
@@ -54,40 +55,39 @@ public class AdddressController {
 		address.setAdstreet(adstreet);
 		address.setAdpostcode(adpostcode);
 
-		addressService.add(address);
-		return "ok";
+		if("".equals(adid)||null==adid){
+			address.setAdid(tools.uuid());
+			addressService.add(address);
+			return "add";
+		}
+		else{
+			address.setAdid(adid);
+			addressService.update(address);
+			return "update";
+		}
 	}
 
-//	@RequestMapping(value="/insertAddress")
-//	public String insertAddress(HttpServletRequest request, Model model) {
+	@RequestMapping(value = "/getUpdate", method = { RequestMethod.POST })
+	@ResponseBody
+	public String getUpdate(HttpServletResponse response,
+			HttpServletRequest request, Model model, HttpSession httpSession) {
 //		User owner = (User) request.getSession().getAttribute("sessionUser");
-//
-//		String str = request.getParameter("city-picker3");
-//		String[] strArray = str.split("/");
-//
-//		String province = strArray[0];
-//		String city = strArray[1];
-//		String district = strArray[2];
-//
-//		String adstreet = request.getParameter("adstreet");
-//		String adpostcode = request.getParameter("adpostcode");
-//		String adname = request.getParameter("adname");
-//		String phone = request.getParameter("adphone");
-//		Address address = new Address();
-//		address.setAdid(tools.uuid());
-//		address.setUid(owner.getUid());
-//		address.setAdname(adname);
-//		address.setAdcity(city);
-//		address.setAddistrict(district);
-//		address.setAdphone(phone);
-//		address.setAdprovince(province);
-//		address.setAdstreet(adstreet);
-//		address.setAdpostcode(adpostcode);
-//
-//		addressService.add(address);
-////		return "ok";loadjiesuan
-//		return "redirect:/cart/loadjiesuan";
-//	}
+		
+		String adid = request.getParameter("adid");
+		
+		Address address=addressService.findByAdid(adid);
+		StringBuffer sb = new StringBuffer();
+//		for(int i = 0; i < str.length; i++){
+//		 sb. append(str[i]);
+//		}
+		sb.append(address.getAdid()+","+address.getAdprovince()+",");
+		sb.append(address.getAdcity()+","+address.getAddistrict()+",");
+		sb.append(address.getAdstreet()+","+address.getAdpostcode()+",");
+		sb.append(address.getAdname()+","+address.getAdphone());
+		String str=sb.toString();
+//		System.out.println(str);
+		return str;
+	}
 	
 	@RequestMapping("/showAddress")
 	public String showAddress(HttpServletRequest request, Model model) {

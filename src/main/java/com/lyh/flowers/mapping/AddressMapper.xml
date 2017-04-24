@@ -45,14 +45,19 @@
       #{adphone,jdbcType=CHAR},#{adprovince,jdbcType=VARCHAR},#{adcity,jdbcType=VARCHAR},#{addistrict,jdbcType=VARCHAR},#{adstreet,jdbcType=VARCHAR},
       #{adpostcode,jdbcType=VARCHAR})
   </insert>
-  <!-- 
+   
   <update id="update" parameterType="com.lyh.flowers.pojo.Address" >
     update t_address
-    set address = #{address,jdbcType=VARCHAR},
-        name = #{name,jdbcType=VARCHAR},
-        phone = #{phone,jdbcType=CHAR},
-    where did = #{did,jdbcType=CHAR}
+    set 
+    	uid=#{uid,jdbcType=CHAR},
+    	adphone=#{adphone,jdbcType=VARCHAR},
+    	adprovince=#{adprovince,jdbcType=VARCHAR},
+    	adcity=#{adcity,jdbcType=VARCHAR},
+        addistrict = #{addistrict,jdbcType=VARCHAR},
+        adstreet = #{adstreet,jdbcType=VARCHAR},
+        adpostcode = #{adpostcode,jdbcType=CHAR},
+        adname = #{adname,jdbcType=CHAR}
+    where adid = #{adid,jdbcType=CHAR}
   </update>
-   -->
   
 </mapper>

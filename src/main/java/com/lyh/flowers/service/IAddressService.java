@@ -14,7 +14,7 @@ public interface IAddressService {
 	public Address findByAdid(String adid);
 	
 	public void delete(String adid);
-	public void update(String adid);
+	public void update(Address address);
 	
 	public int findCountByUid(String uid);
 }

@@ -32,11 +32,6 @@ public class AddressServiceImpl implements IAddressService {
 	}
 
 	@Override
-	public void update(String adid) {
-		addressDao.update(adid);
-	}
-
-	@Override
 	public Address findByAdid(String adid) {
 		return addressDao.findByAdid(adid);
 	}
@@ -44,6 +39,11 @@ public class AddressServiceImpl implements IAddressService {
 	@Override
 	public int findCountByUid(String uid) {
 		return addressDao.findCountByUid(uid);
+	}
+
+	@Override
+	public void update(Address address) {
+		addressDao.update(address);
 	}
 
 }

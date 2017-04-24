@@ -11,7 +11,7 @@ public interface IAddressDao {
 	public Address findByAdid(String adid);
 	
 	public void delete(String did);
-	public void update(String did);
+	public void update(Address address);
 	
 	public int findCountByUid(String uid);
 

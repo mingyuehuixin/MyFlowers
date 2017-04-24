@@ -7,28 +7,26 @@
 
 <link type="text/css" href="<c:url value='../static/css/user/forgetpwd.css'/>" rel="stylesheet" />
 <script type="text/javascript" src="<c:url value='../static/js/jquery-1.5.1.js'/>"></script>
-<script type="text/javascript" src="<c:url value='../static/js/user/forgetpwd.js'/>"></script>
+<script type="text/javascript" src="<c:url value='../static/js/user/forgetpwd2.js'/>"></script>
 
 <script type="text/javascript">
 
  function changItem(){
 	 var objS = document.getElementById("select1");
 	 var value = objS.options[objS.selectedIndex].value;
-	// alert(value);
 	 if(value=="0"){
 		 $(".sel-yzsj").show();
+		 $("#subtijiao").show();
 		 $(".sel-yzyx").hide();
 		 }
 	 else if(value=="1"){
 		 $(".sel-yzsj").hide();
+		 $("#subtijiao").hide();
 		 $(".sel-yzyx").show();
 		 }
  }
  function emailSendCode() {
-	// alert("test");
 	 var email=$("#email").val();
-	// alert(email);
-	 
 	 $.ajax({
 			async:false,
 			cache:false,
@@ -41,14 +39,51 @@
 				return false;
 			}
 		});
-	
 }
+ 
+ var count = 120; //间隔函数，1秒执行  
+ var curCount;//当前剩余秒数
+ function getVcode() {
+	 var phone=$("#phone").val();
+	 curCount=count;
+	 //设置button效果，开始计时  
+     $("#btn").attr("disabled", "true");  
+     $("#btn").val("请在" + curCount + "秒内输入验证码");  
+     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次 
+	 $.ajax({
+			async:false,
+			cache:false,
+			url:"../user/getVcode",
+			data:{phone:phone},
+			type:"POST",
+			dataType:"json",
+			success:function(result) {
+				
+				return ture;
+			}
+		});
+ }
+ 
+//timer处理函数  
+ function SetRemainTime() { 
+     if (curCount == 0) {                  
+         window.clearInterval(InterValObj);//停止计时器  
+         $("#btn").removeAttr("disabled");//启用按钮  
+         $("#btn").val("重新发送验证码");  
+         code = ""; //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效      
+     }  
+     else {  
+         curCount--;  
+         $("#btn").val("请在" + curCount + "秒内输入验证码");  
+     }  
+ }  
+  
 </script>
 </head>
 
 <body onload="changItem()" >
   <br><br>
-   <h3 id="titleH">${errorMsg }</h3>
+   
   <div class="content">
    <div class="web-width">
      <div class="for-liucheng">
@@ -64,10 +99,12 @@
       </div>
      </div><!--for-liucheng/-->
      
-     <h3 id="titleH">${errorMsg }</h3>
+    
+     <form action="../user/codeCheck" method="POST" class="forget-pwd">
+      <!-- 
+     <div class="forget-pwd">
+       -->
      
-     
-     <form action="../user/forgotPassword3" method="POST" class="forget-pwd">
        <dl>
         <dt>验证方式：</dt>
         <dd>
@@ -81,7 +118,10 @@
 
        <dl class="sel-yzsj">
         <dt>已验证手机：</dt>
-        <dd><input type="text" value="1851****517" readonly  /></dd>
+        <dd><input class="inputClass" type="text" id="phone" name="phone" value="${phone }"  />
+        <label class="errorClass" id="phoneError">${errors.phone}</label>
+        </dd>
+       
         <div class="clears"></div>
        </dl>
        <dl class="sel-yzyx">
@@ -98,17 +138,27 @@
        <dl class="sel-yzsj">
         <dt>号码校验码：</dt>
         <dd><input type="text" class="inputClass" type="text" name="verifyCode" id="verifyCode" />
-         <button>获取短信验证码</button></dd>
+       
+        <input class="checkCode" type="button" id="btn" onclick="getVcode()"  value="获取验证码" />
+        <!-- 
+         <button id="getVcodeButton" onclick="getVcode()">获取短信验证码</button>
+         -->
+         
+         </dd>
         <dt>&nbsp;&nbsp;&nbsp;&nbsp;</dt>
         <dd>
+        <label class="errorClass">${errorMsg }</label>
         <label class="errorClass" id="verifyCodeError">${errors.verifyCode}</label>
         </dd>
         <div class="clears"></div>
        </dl>
-       <div class="sel-yzsj">
-       <input type="submit" value="下一步" />
+       <div class="subtijiao">
+       		<input type="submit" value="下一步" />
+      </form>
+       <!-- 
+       </div>
+        -->
        </div> 
-      </form><!--forget-pwd/-->
    </div><!--web-width/-->
   </div><!--content/-->
   

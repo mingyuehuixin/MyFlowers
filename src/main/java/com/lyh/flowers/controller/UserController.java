@@ -30,6 +30,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lyh.flowers.pojo.User;
 import com.lyh.flowers.service.IUserService;
 import com.lyh.flowers.util.Md5;
+import com.lyh.flowers.util.tools;
+import com.taobao.api.ApiException;
+import com.taobao.api.DefaultTaobaoClient;
+import com.taobao.api.TaobaoClient;
+import com.taobao.api.request.AlibabaAliqinFcSmsNumSendRequest;
+import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 
 @Controller
 @RequestMapping("/user")
@@ -287,6 +293,7 @@ public class UserController {
 		model.addAttribute("email", user.getEmail());
 		return "user/forgetPwd2";
 	}
+	
 	@RequestMapping("/forgotPassword3")
 	public String forgetPassword3(HttpServletRequest request, Model model) {
 		String sid = request.getParameter("sid");
@@ -331,6 +338,23 @@ public class UserController {
 		}
 	}
 
+	@RequestMapping(value = "/codeCheck", method = { RequestMethod.POST })
+	public String verifyCodeCheck(HttpServletRequest request,HttpSession httpSession, Model model) {
+		String codeSession = (String) httpSession.getAttribute("vcode");
+		String verifyCode=request.getParameter("verifyCode");
+//		System.out.println("codeSession:"+codeSession+"verifyCode:"+verifyCode);
+		
+		if(codeSession.equals(verifyCode)){
+			return "user/forgetPwd3";
+		}
+		else{
+			model.addAttribute("errorMsg", "输入的验证码有误");
+			model.addAttribute("verifyCode", verifyCode);
+			return "user/forgetPwd2";
+		}
+		
+	}
+	
 	@RequestMapping(value = "/forgotPassword4", method = { RequestMethod.POST })
 	public String forgetPassword4(HttpServletRequest request, Model model) {
 		String newpass = request.getParameter("loginpass");
@@ -353,5 +377,37 @@ public class UserController {
 			return "mainFrame/msg";
 		}
 	}
+	
+	/**
+     * 获取短信验证码
+     */
+    @RequestMapping(value ="/getVcode",method = RequestMethod.POST)
+    @ResponseBody
+    public String getVcode(HttpServletRequest request, HttpSession session) throws ApiException {
+    	
+    	String phone = request.getParameter("phone");
+    	String url = "http://gw.api.taobao.com/router/rest";
+    	TaobaoClient client = new DefaultTaobaoClient(url,"23762833",
+    			"0e956ca18685b8a177764a5dc7627835");
+    	
+        AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
+        req.setExtend("1");
+        
+        req.setSmsType("normal");
+        
+        req.setSmsFreeSignName("玫瑰之约网上商城");
+        //生成验证码数字
+        String vcode = tools.getVcode();
+        //存到session域中
+        session.setAttribute("vcode",vcode);
+//        System.out.println("验证码："+vcode);
+        req.setSmsParamString("{number:'"+vcode+"'}");
+        
+        req.setRecNum(phone);
+        req.setSmsTemplateCode("SMS_62750038");
+        AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);
+//        System.out.println(rsp.getBody());
+        return "ok";
+    }
 
 }
