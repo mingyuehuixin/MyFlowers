@@ -11,6 +11,9 @@
 	<script type="text/javascript" src="<c:url value='../static/js/common.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='../static/js/jquery-1.5.1.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='../static/js/user/regist.js'/>"></script>
+  	
+  
+  	
   </head>
   
   <body>
@@ -52,6 +55,15 @@
         </td>
       </tr>
       <tr>
+        <td class="tdText">phone：</td>
+        <td>
+          <input class="inputClass" type="text" name="phone" id="phone" value="${form.phone }"/>
+        </td>
+        <td>
+          <label class="errorClass" id="phoneError">${errors.phone}</label>
+        </td>
+      </tr>
+      <tr>
         <td class="tdText">Email：</td>
         <td>
           <input class="inputClass" type="text" name="email" id="email" value="${form.email }"/>
@@ -81,7 +93,7 @@
       <tr>
         <td></td>
         <td>
-          <input type="image" src="<c:url value='../static/image/regist1.jpg'/>" id="submitBtn"/>
+          <input type="image" src="<c:url value='../static/image/regist1.jpg'/>" id="submitBtn" onclick="onclick_open()"/>
         </td>
         <td>
           <label></label>
@@ -91,5 +103,8 @@
 </form:form>   
   </div>
 </div>
+
+
+
   </body>
 </html>

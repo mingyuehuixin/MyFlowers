@@ -10,9 +10,10 @@
     <result column="currPrice" property="currPrice" jdbcType="DECIMAL" />
   	<result column="image_b" property="image_b" jdbcType="VARCHAR" />
     <result column="oid" property="oid" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    orderItemId, quantity, subtotal, fid, fname, currPrice, image_b, oid
+    orderItemId, quantity, subtotal, fid, fname, currPrice, image_b, oid,status
   </sql>
  
   <select id="loadOrderItem" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -22,8 +23,15 @@
   </select>
   
   <insert id="addOrderItem" parameterType="com.lyh.flowers.pojo.OrderItem" >
-   insert into t_orderitem(orderItemId, quantity, subtotal, fid, fname, currPrice, image_b, oid)
-             values(#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7})
+   insert into t_orderitem(orderItemId, quantity, subtotal, fid, fname, currPrice, image_b, oid,status)
+             values(#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8})
   </insert>
+  
+  <update id="updatStatus" parameterType="java.lang.String" >
+    update t_orderitem 
+    set 
+    	status=#{1}	
+     where orderItemId=#{0}
+  </update>
   
 </mapper>

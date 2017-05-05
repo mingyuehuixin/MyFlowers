@@ -50,6 +50,9 @@ $(function() {
 		if(!validateReloginpass()) {
 			bool = false;
 		}
+		if(!validatePhone()){
+			bool = false;
+		}
 		if(!validateEmail()) {
 			bool = false;
 		}
@@ -114,6 +117,29 @@ function validateLoginname() {
 		}
 	});
 	return true;
+}
+
+function validatePhone() {
+	var id = "phone";
+	var value = $("#" + id).val();//获取输入框内容
+	/*
+	 * 1. 非空校验
+	 */
+	if(!value) {
+		$("#" + id + "Error").text("号码不能为空！");
+		showError($("#" + id + "Error"));
+		return false;
+	}
+	/*
+	 * 2. Phone格式校验
+	 */
+	if(!/^1(3|4|5|7|8)\d{9}$/.test(value)) {
+		$("#" + id + "Error").text("输入的号码有误！");
+		showError($("#" + id + "Error"));
+		false;
+	}
+	
+	return true;		
 }
 
 /*

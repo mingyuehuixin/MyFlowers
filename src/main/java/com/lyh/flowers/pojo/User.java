@@ -8,6 +8,7 @@ public class User {
 		private String loginname;//登录名
 		private String loginpass;//登录密码
 		private String email;//邮箱
+		private String phone;//电话
 		private int status;//状态，true表示已激活，或者未激活
 
 		private String activationCode;//激活码，它是唯一值！即每个用户的激活码是不同的！
@@ -16,6 +17,15 @@ public class User {
 		private String validataCode;//激活码，它是唯一值！即每个用户的激活码是不同的！
 		private Date outDate;//注册时间
 		
+		
+		public String getPhone() {
+			return phone;
+		}
+
+		public void setPhone(String phone) {
+			this.phone = phone;
+		}
+
 		public int getStatus() {
 			return status;
 		}

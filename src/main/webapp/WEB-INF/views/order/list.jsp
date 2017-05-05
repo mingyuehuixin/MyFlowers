@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css"href="<c:url value='../static/css/order/list.css'/>" />
 <link rel="stylesheet" type="text/css" href="<c:url value='${pageContext.request.contextPath}/static/css/pager.css'/>" />
 
+
 </head>
 
 <body>
@@ -31,19 +32,27 @@
 						href="<c:url value='../order/desc/${order.oid }'/>">${order.oid }</a></td>
 					<td width="200px">下单时间：${order.ordertime }</td>
 					<td>&nbsp;</td>
-					<td>&nbsp;</td>
+					<td width="142px">
+						<c:choose>
+						<c:when test="${order.status eq 4 }">
+							<button style="background:#c40000;color:#ffffff; " type="button" onclick="location.href='../order/desc/${order.oid }'">评价</button>
+						</c:when>
+						</c:choose>
+					</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr style="padding-top: 10px; padding-bottom: 10px;">
-					<td colspan="2"><c:forEach items="${order.orderItemList }"
+					<td colspan="2">
+						<c:forEach items="${order.orderItemList }"
 							var="orderItem">
 							<a class="link2"
 								href="<c:url value='../flower/loadDesc/${orderItem.fid }'/>">
 								<img border="0" width="70"
 								src="<c:url value='/${orderItem.image_b }'/>" />
 							</a>
-						</c:forEach></td>
+						</c:forEach>
+					</td>
 					<td width="115px"><span class="price_t">&yen;${order.total }</span>
 					</td>
 					<td width="142px"><c:choose>

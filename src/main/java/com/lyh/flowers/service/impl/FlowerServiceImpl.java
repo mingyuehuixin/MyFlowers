@@ -148,5 +148,10 @@ public class FlowerServiceImpl implements IFlowerService {
 		return pb;
 	}
 
+	@Override
+	public int findCommentsCount(String fid) {
+		return flowerDao.findCommentsCount(fid);
+	}
+
 	
 }

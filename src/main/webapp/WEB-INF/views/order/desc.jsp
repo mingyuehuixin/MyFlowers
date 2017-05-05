@@ -31,7 +31,7 @@
 				<dd>姓名：${order.address.adname }   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				          电话：${order.address.adphone }</dd>
 				<dd>地址：${order.address.adprovince }${order.address.adcity }${order.address.addistrict }
-					${order.address.adstreet }${order.address.adphone }</dd>
+					${order.address.adstreet }</dd>
 			</dl>
 		</div>
 		<div class="div2">
@@ -44,6 +44,7 @@
 							<th class="tt" align="left">单价</th>
 							<th class="tt" align="left">数量</th>
 							<th class="tt" align="left">小计</th>
+							<th class="tt" align="left"></th>
 						</tr>
 
 
@@ -52,7 +53,7 @@
 							<td class="td" width="400px">
 								<div class="flowername">
 								  <img align="middle" width="70" src="<c:url value='/${item.image_b }'/>"/>
-								  <a href="<c:url value='../order/desc/${item.fid }'/>">${item.fname }</a>
+								  <a href="<c:url value='../../flower/loadDesc/${item.fid }'/>">${item.fname }</a>
 								</div>
 							</td>
 							<td class="td" >
@@ -63,7 +64,22 @@
 							</td>
 							<td class="td">
 								<span>&yen;${item.subtotal }</span>
-							</td>			
+							</td>
+							<c:if test="${order.status eq 4 and item.status eq 0 }">
+							<td class="td">
+								<span>
+								<button style="background:#c40000;color:#ffffff; " type="button" onclick="location.href='../../flower/comment/fid=${item.fid }&orderItemId=${item.orderItemId }'">评价</button>
+								</span>
+							</td>
+							</c:if>
+							<c:if test="${order.status eq 4 and item.status eq 1 }">
+							<td class="td">
+								<span>
+								<button style="background:#FF8C00;color:#ffffff; " type="button" >已评价</button>
+								</span>
+							</td>
+							</c:if>
+										
 						</tr>
 </c:forEach>
 
@@ -84,6 +100,7 @@
 <c:if test="${order.status eq 3 }">
 	<a id="confirm" href="<c:url value='../../order/confirm/${order.oid }'/>">确认收货</a><br/>
 </c:if>	
+
 		</div>
 	</div>
 </body>

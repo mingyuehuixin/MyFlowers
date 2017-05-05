@@ -300,10 +300,13 @@ public class OrderController {
 	@RequestMapping("/desc/{oid}")
 	public String desc(@PathVariable String oid,HttpServletRequest request,Model model){
 		Order order = orderService.load(oid);
+//		Address address=addressService.findByAdid(order.getAdid());
+		
 		order.setAddress(addressService.findByAdid(order.getAdid()));
+		
 		model.addAttribute("order", order);
 		
-//		System.out.println(order);
+//		System.out.println("address:"+address.getAdcity());
 		
 		String btn = request.getParameter("btn");//btn说明了用户点击哪个超链接来访问本方法的
 		model.addAttribute("btn", btn);
@@ -326,7 +329,8 @@ public class OrderController {
 		request.setAttribute("code", "success");
 		request.setAttribute("msg", "您的订单已取消");
 		
-		return "mainFrame/msg";
+		return "redirect:/order/orderlist";
+//		return "mainFrame/msg";
 	}
 	
 	@RequestMapping("/confirm/{oid}")
@@ -344,7 +348,8 @@ public class OrderController {
 		request.setAttribute("code", "success");
 		request.setAttribute("msg", "恭喜，交易成功！");
 		
-		return "mainFrame/msg";
+		return "redirect:/order/orderlist";
+//		return "mainFrame/msg";
 	}
 	
 	

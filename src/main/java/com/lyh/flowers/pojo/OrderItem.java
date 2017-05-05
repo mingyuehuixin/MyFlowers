@@ -9,6 +9,7 @@ public class OrderItem {
 	private String fname;
 	private String image_b;
 	private String oid;
+	private String status;
 	
 	private Flower flower;//所关联的Flower
 	private Order order;//所属的订单
@@ -74,6 +75,12 @@ public class OrderItem {
 	}
 	public void setOrder(Order order) {
 		this.order = order;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	

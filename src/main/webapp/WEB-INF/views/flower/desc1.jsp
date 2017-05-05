@@ -6,15 +6,11 @@
 <title>鲜花详情</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/flower/desc.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/flower/common.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/flower/style.css">
 
 <script type="text/javascript" src="<c:url value='../../static/js/jquery-1.5.1.js'/>"></script>
 <script type="text/javascript" src="<c:url value='../../static/js/flower/desc.js'/>"></script>
 <script type="text/javascript" src="<c:url value='../../static/js/flower/common.js'/>"></script>
 
-<style type="text/css">
-	
-</style>
 <script type="text/javascript">
   $(document).ready(function(){
 	  var showproduct = {
@@ -33,33 +29,6 @@
 		  };//参数定义	  
 	 $.ljsGlasses.pcGlasses(showproduct);//方法调用，务必在加载完后执行
   });
-  
-  
-  var myclick = function(v) {  
-      var llis = document.getElementsByTagName("li");  
-      for(var i = 0; i < llis.length; i++) {  
-          var lli = llis[i];  
-          if(lli == document.getElementById("tab" + v)) {  
-              lli.style.backgroundColor = "#FF6EB4";  
-          } else {  
-              lli.style.backgroundColor = "#FFE4E1";  
-          }  
-      }  
-
-      var divs = document.getElementsByClassName("tab_css");  
-      for(var i = 0; i < divs.length; i++) {  
-
-          var divv = divs[i];  
-
-          if(divv == document.getElementById("tab" + v + "_content")) {  
-              divv.style.display = "block";  
-          } else {  
-              divv.style.display = "none";  
-          }  
-      }  
-  }  
-  
-  
 </script>
 
 </head>
@@ -127,26 +96,10 @@
 			</div>
 		</div>
 		<div class="cf"></div>
-		<br/><br/>
-		<div id="content">  
-            <div id="tab_bar" class="FullBar fbRed">  
-                <ul >  
-                    <li  id="tab1" onclick="myclick(1)" style="background-color: #FF6EB4">  
-                        <h1 class="FullBar fbRed">
-							<span class="FullBarText">商品详情</span>
-						</h1> 
-                    </li>  
-                    <li  id="tab2" onclick="myclick(2)">  
-                       <h1 class="FullBar fbRed">
-							<span class="FullBarText">累计评论（${flower.commentcount }）</span>
-						</h1>  
-                    </li>  
-                     
-                </ul>  
-            </div>  
-            <div class="tab_css" id="tab1_content" style="display: block">  
-                
-                <div class="DispalyContentBox frameMarginBot">
+		<h1 class="FullBar fbRed">
+			<span class="FullBarText">商品详情</span>
+		</h1>
+		<div class="DispalyContentBox frameMarginBot">
 			<p>
 				<span
 					style="font-family: lucida sans unicode, lucida grande, sans-serif"><span
@@ -219,7 +172,7 @@
 				<strong><span style="font-size: 18px"><span><span style="font-size: 18px">
 				<span style="font-size: 16px"><span style="color: #000000">配送提示：<br>
 			          非节日期间，可指定时间送到最快时间2小时到达，节日期间，可保证当日送达，急需者可另议。送达市郊或乡村，根据路程远近，收取相应的快递费。	</span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span>
-			  </li> <br/>
+			  </li> <br>
 			  <li>
 				    <span style="font-family: lucida sans unicode, lucida grande, sans-serif">
 					<span style="color: #ff0000"> <span style="font-size: 18px">
@@ -239,62 +192,7 @@
 					  一经采纳者，我们将给予相应的回报，谢谢您的支持和厚爱！</span></span></span></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></strong></span></span></span></strong></span></strong></span></span></strong></span></span></strong></span></span></span></span></span>
 				</li>
 			</ul>		
-		</div>  
-                  
-            </div>  
-            <div class="tab_css" id="tab2_content">  
-                
-                 <ul>
-	
-	<c:forEach items="${comments }" var="comment">
-	<li id="review-298154370182" class="J_KgRate_ReviewItem kg-rate-ct-review-item" tabindex="0">
-    <div class="from-whom">
-      <img class="avatar" src="//img.alicdn.com/tps/i3/TB1yeWeIFXXXXX5XFXXuAZJYXXX-210-210.png">
-      <div>${comment.uid }（匿名）</div>
-    
-    </div>
-    <div class="review-details">
-      
-      <div class="tb-rev-item " data-id="298154370182">
-        <div class="J_KgRate_ReviewContent tb-tbcr-content ">
-          ${comment.cgood }${comment.cservice }
-         
-        </div>
-        <div class="tb-rev-item-media">
-          <c:if test="${comment.cpicture  ne null }">
-          <ul class="kg-photo-viewer-thumb-bar tb-tbcr-mt">
-            
-            <li class="photo-item"><img src="${comment.cpicture }"></li>
-          </ul>
-          </c:if>
-        </div>
-        <div class="tb-r-act-bar">
-          <div class="tb-r-info">
-          <br>
-          <br>
-           <span class="tb-r-date">${comment.commenttime }</span>
-          </div>
-          
-          
-        </div>
-      </div>
-      
-    </div>
-  </li>
-  <br>
-	</c:forEach>
-</ul>
-                
-                
-                
-                
-                  
-            </div>  
-            
-        </div>  
-		
-		
-		
+		</div>
 	</div>
 </body>
 </html>

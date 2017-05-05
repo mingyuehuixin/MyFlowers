@@ -1,9 +1,7 @@
 package com.lyh.flowers.service;
 
 
-import java.util.List;
 
-import com.lyh.flowers.pojo.Category;
 import com.lyh.flowers.pojo.Flower;
 import com.lyh.flowers.pojo.PageBean;
 
@@ -12,6 +10,7 @@ public interface IFlowerService {
 	public void edit(Flower flower);
 	public Flower findByFid(String fid);
 	public int findFlowerCountByCategory(String cid);
+	public int findCommentsCount(String fid);
 	
 	public PageBean<Flower> findByCategory(String cid, int pc);
 	

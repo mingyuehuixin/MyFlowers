@@ -1,0 +1,114 @@
+#content {
+	width: 750px;
+	height: 150%;
+}
+
+#tab_bar {
+	width: 750px;
+	height: 40px;
+	float: left;
+}
+
+#tab_bar ul {
+	padding: 0px;
+	margin: 0px;
+	height: 20px;
+	text-align: center;
+}
+
+#tab_bar li {
+	border: 1px solid #EEE5DE;
+	list-style-type: none;
+	float: left;
+	width: 100px;
+	height: 20px;
+}
+
+.tab_css {
+	width: 750px;
+	height: 200px;
+	display: none;
+	float: left;
+}
+
+ul {
+	list-style: none;
+}
+
+.kg-rate-ct-review-item {
+	position: relative;
+	list-style: none;
+	outline: 0;
+	padding: 10px;
+	border-bottom: 1px solid #D4D4D4;
+}
+
+.kg-rate-ct-review-item .from-whom {
+	float: left;
+	overflow: hidden;
+	width: 100px;
+	text-align: center;
+	line-height: 1.5;
+}
+
+.kg-rate-ct-review-item .from-whom .avatar {
+	width: 40px;
+	height: 40px;
+}
+
+.kg-rate-ct-review-item .from-whom img {
+	display: inline;
+}
+
+a,img {
+	-webkit-touch-callout: none;
+}
+
+img {
+	vertical-align: middle;
+}
+
+fieldset,img {
+	border: 0;
+}
+
+.kg-rate-ct-review-item .review-details {
+	box-sizing: border-box;
+	overflow: hidden;
+	margin-left: 100px;
+	position: relative;
+	zoom: 1;
+}
+
+user agent stylesheetdiv {
+	display: block;
+}
+
+.tb-tbcr-content {
+	font-size: 14px;
+	line-height: 1.4;
+	color: #3F3F3F;
+	word-wrap: break-word;
+}
+
+.kg-rate .tb-r-info {
+	float: left;
+	font-size: 12px;
+	color: #B0B0B0;
+}
+
+.kg-rate .tb-r-date {
+	margin-right: 20px;
+}
+
+.kg-rate .tb-r-act-bar {
+	margin-top: 10px;
+}
+Inherited
+ 
+from
+ 
+li
+#review-306726813345
+.J_KgRate_ReviewItem
+.kg-rate-ct-review-item

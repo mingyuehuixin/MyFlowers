@@ -22,4 +22,6 @@ public interface IOrderService {
 	public PageBean<Order> findByStatus(int status,int pc);
 	
 	public void updateStatus(String oid, int status);
+	
+	public void updatStatusByItem(String orderItemId,String status);
 }

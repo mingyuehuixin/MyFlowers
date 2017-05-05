@@ -6,6 +6,7 @@
     <result column="loginname" property="loginname" jdbcType="VARCHAR" />
     <result column="loginpass" property="loginpass" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="activationCode" property="activationCode" jdbcType="VARCHAR" />
     <result column="registTime" property="registTime" jdbcType="CHAR" />
@@ -13,7 +14,7 @@
     <result column="outDate" property="outDate" jdbcType="CHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    uid, loginname, loginpass, email, status,activationCode,registTime,validataCode,outDate
+    uid, loginname, loginpass, email,phone, status,activationCode,registTime,validataCode,outDate
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -60,9 +61,9 @@
      where uid = #{uid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.lyh.flowers.pojo.User" >
-    insert into t_user ( uid, loginname, loginpass, email, status,activationCode,registTime,validataCode,outDate)
+    insert into t_user ( uid, loginname, loginpass, email,phone, status,activationCode,registTime,validataCode,outDate)
     values (#{uid,jdbcType=VARCHAR}, #{loginname,jdbcType=VARCHAR}, #{loginpass,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR},#{status,jdbcType=INTEGER},#{activationCode,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR},#{phone,jdbcType=CHAR},#{status,jdbcType=INTEGER},#{activationCode,jdbcType=VARCHAR},
       #{registTime,jdbcType=CHAR},#{validataCode,jdbcType=VARCHAR},#{outDate,jdbcType=CHAR})
   </insert>
   
@@ -71,6 +72,7 @@
     set loginname = #{loginname,jdbcType=VARCHAR},
         loginpass = #{loginpass,jdbcType=VARCHAR},
         email = #{email,jdbcType=VARCHAR},
+        phone=#{phone,jdbcType=CHAR},
         status = #{status,jdbcType=INTEGER},
         activationCode = #{activationCode,jdbcType=VARCHAR},
         registTime = #{registTime,jdbcType=CHAR},

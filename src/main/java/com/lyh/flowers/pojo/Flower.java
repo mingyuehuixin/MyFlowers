@@ -17,8 +17,7 @@ public class Flower {
 	private String makeuse;//用途
 	private String cid;//所属分类
 	private int orderBy;//支数
-//	private Category category;//所属分类
-//	private Category category;
+	private int commentcount;//所属分类
 	private String image_w;//大图路径
 	private String image_b;//小图路径
 	public String getFid() {
@@ -123,6 +122,13 @@ public class Flower {
 	}
 	public void setImage_b(String image_b) {
 		this.image_b = image_b;
+	}
+	
+	public int getCommentcount() {
+		return commentcount;
+	}
+	public void setCommentcount(int commentcount) {
+		this.commentcount = commentcount;
 	}
 	@Override
 	public String toString() {

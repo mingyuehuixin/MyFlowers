@@ -19,11 +19,12 @@
    	<result column="image_w" property="image_w" jdbcType="VARCHAR" />
    	<result column="image_b" property="image_b" jdbcType="VARCHAR" />
     <result column="orderBy" property="orderBy" jdbcType="INTEGER" />
+  	<result column="commentcount" property="commentcount" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     fid, fname, material, price, currPrice,discount,flowersaying,
     packing,target,branchnumber,flowercolor,type,makeuse,cid,
-    image_w,image_b,orderBy
+    image_w,image_b,orderBy,commentcount
   </sql>
   
   <insert id="add" parameterType="com.lyh.flowers.pojo.Flower" >
@@ -83,6 +84,11 @@
     where fid=#{0} 
   </select>
  
+ <select id="findCommentsCount" resultType="java.lang.Integer">
+    select commentcount 
+    from t_flower 
+    where fid=#{0}
+  </select>
   
   <select id="findFlowerCountByCategory" resultType="java.lang.Integer">
     select count(*) 
@@ -119,7 +125,8 @@
     	 makeuse=#{makeuse},
     	 cid=#{cid},
     	image_w=#{image_w},
-    	image_b=#{image_b}	
+    	image_b=#{image_b},
+    	commentcount=#{commentcount}	
      where fid=#{fid}
   </update>
 </mapper>

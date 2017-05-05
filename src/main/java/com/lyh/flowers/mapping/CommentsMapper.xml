@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lyh.flowers.dao.ICommentsDao" >
+  <resultMap id="BaseResultMap" type="com.lyh.flowers.pojo.Comments" >
+    <id column="commentId" property="commentId" jdbcType="CHAR" />
+    <result column="uid" property="uid" jdbcType="CHAR" />
+    <result column="fid" property="fid" jdbcType="CHAR" />
+    <result column="cgood" property="cgood" jdbcType="VARCHAR" />
+    <result column="cservice" property="cservice" jdbcType="VARCHAR" />
+    <result column="cpicture" property="cpicture" jdbcType="CHAR" />
+    <result column="cdescribe" property="cdescribe" jdbcType="CHAR" />
+    <result column="storeservice" property="storeservice" jdbcType="CHAR" />
+    <result column="logistics" property="logistics" jdbcType="CHAR" />
+    <result column="attitude" property="attitude" jdbcType="CHAR" />
+    <result column="anony" property="anony" jdbcType="CHAR" />
+    <result column="commenttime" property="commenttime" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    commentId, uid, fid, cgood, cservice, cpicture,cdescribe,storeservice,logistics,attitude,anony,commenttime
+  </sql>
+  
+  <!-- 
+  <select id="findByUid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select *
+    from t_comments
+    where uid = #{uid,jdbcType=CHAR}
+  </select>
+   -->
+  
+  <select id="findByFid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select *
+    from t_comments
+    where fid = #{fid,jdbcType=CHAR}
+  </select>
+  
+  <select id="findCountByFid" resultType="java.lang.Integer">
+    select count(*) 
+    from t_comments 
+    where fid = #{fid,jdbcType=CHAR}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.String" >
+    delete from t_comments
+     where commentId = #{commentId,jdbcType=CHAR}
+  </delete>
+  <insert id="add" parameterType="com.lyh.flowers.pojo.Address" >
+    insert into t_comments (commentId, uid, fid, cgood, cservice,
+        cpicture,cdescribe,storeservice,logistics,attitude,anony,commenttime)
+    values (#{commentId,jdbcType=CHAR}, #{uid,jdbcType=CHAR},
+      #{fid,jdbcType=CHAR}, #{cgood,jdbcType=VARCHAR}, 
+      #{cservice,jdbcType=VARCHAR},#{cpicture,jdbcType=CHAR},
+      #{cdescribe,jdbcType=CHAR},#{storeservice,jdbcType=CHAR},
+      #{logistics,jdbcType=CHAR},
+      #{attitude,jdbcType=CHAR},
+      #{anony,jdbcType=CHAR},
+      #{commenttime,jdbcType=CHAR})
+  </insert>
+   
+   <!-- 
+  <update id="update" parameterType="com.lyh.flowers.pojo.Address" >
+    update t_comments
+    set 
+    	uid=#{uid,jdbcType=CHAR},
+    	fid=#{fid,jdbcType=CHAR},
+    	cgood=#{cgood,jdbcType=VARCHAR},
+    	cservice=#{cservice,jdbcType=VARCHAR},
+    	cpicture=#{cpicture,jdbcType=CHAR},
+        cdescribe = #{cdescribe,jdbcType=CHAR},
+        storeservice = #{storeservice,jdbcType=CHAR},
+        logistics = #{logistics,jdbcType=CHAR},
+        attitude = #{attitude,jdbcType=CHAR},
+        anony = #{anony,jdbcType=CHAR}
+    where commentId = #{commentId,jdbcType=CHAR}
+  </update>
+    -->
+  
+</mapper>

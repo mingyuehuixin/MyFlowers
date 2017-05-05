@@ -46,11 +46,6 @@
 <script type="text/javascript">
 	
 	$(function() {
-//		var region = $("#region");
-//		var address = $("#address");
-//		var number_this = $("#number_this");
-//		var name = $("#name_");
-//		var phone = $("#phone");
 		$("#sub_setID").click(function() {
 			var input_out = $(".input_style");
 			for (var i = 0; i <= input_out.length; i++) {

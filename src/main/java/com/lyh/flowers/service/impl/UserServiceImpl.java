@@ -12,6 +12,7 @@ import com.lyh.flowers.pojo.User;
 import com.lyh.flowers.service.IUserService;
 import com.lyh.flowers.util.Md5;
 import com.lyh.flowers.util.SendEmailUtil;
+import com.lyh.flowers.util.tools;
 
 
 @Service("userService")
@@ -19,10 +20,10 @@ public class UserServiceImpl implements IUserService {
 	@Resource
 	private IUserDao userDao;
 	
-	public static String uuid() {
-		return UUID.randomUUID().toString().replace("-", "").toUpperCase();
-	}
-	
+//	public static String uuid() {
+//		return UUID.randomUUID().toString().replace("-", "").toUpperCase();
+//	}
+//	
 	@Override
 	public User getUserById(int userId) {
 		return this.userDao.selectByPrimaryKey(userId);
@@ -42,9 +43,9 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public void insert(User user) {
 		
-		user.setUid(uuid());
+		user.setUid(tools.uuid());
 		user.setStatus(0);
-		user.setActivationCode(uuid()+uuid());
+		user.setActivationCode(tools.uuid()+tools.uuid());
 		user.setRegistTime(new Date());
 		this.userDao.insert(user);
 		

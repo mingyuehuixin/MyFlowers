@@ -123,5 +123,10 @@ public class OrderServiceImpl implements IOrderService {
 		pb.setTr(count);
 		return pb;
 	}
+
+	@Override
+	public void updatStatusByItem(String orderItemId, String status) {
+		orderItemDao.updatStatus(orderItemId, status);
+	}
 	
 }

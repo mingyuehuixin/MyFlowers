@@ -201,8 +201,10 @@ public class UserController {
 	public String doregist(@Valid User user, BindingResult result,
 			ModelMap model) {
 		userService.insert(user);
-		model.addAttribute("code", "success");
-		model.addAttribute("msg", "恭喜您注册成功，请马上到邮箱激活！");
+		
+//		model.addAttribute("code", "success");
+//		model.addAttribute("msg", "恭喜您注册成功，请马上到邮箱激活，或点击下方使用电话号码激活");
+//		return "user/phoneValtion";
 		return "mainFrame/msg";
 	}
 
@@ -406,8 +408,12 @@ public class UserController {
         req.setRecNum(phone);
         req.setSmsTemplateCode("SMS_62750038");
         AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);
-//        System.out.println(rsp.getBody());
+        System.out.println(rsp.getBody());
         return "ok";
     }
-
+    
+    @RequestMapping(value = "/phoneValtion", method = { RequestMethod.GET })
+	public String phoneValtion(HttpServletRequest request, Model model) {
+		return "user/phonevaltion";
+	}
 }

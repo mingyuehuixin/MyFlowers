@@ -11,7 +11,7 @@ public interface IFlowerDao {
 	public void delete(String fid);
 	
 	public void edit(Flower flower);
-	
+	public int findCommentsCount(String fid);
 	
 	public Flower findByFid(String fid);
 	public int findFlowerCountByCategory(String cid);
